@@ -29,7 +29,7 @@ The client-side stack of Lettergories is built with React Native as it lets me w
 
 I use CircleCI as the CI/CD platform. It's responsible for running tests, building the Docker image and deploying to Google Kubernetes Engine.  
 ![Lettergories Pipeline](/assets/lettergories_pipeline.png)
-Lettergories currently has a little over 100 tests. Upon test succeeding, it proceeds to build the Docker image and push it to Google Container Registry. Before deploying the new changes, it spins up a one-off pod to run database migrations. Afterwards, it updates the necessary Kubernetes deployment with the new image tag and performs a rolling update to the staging environment. Once a feature is tested on staging, I will proceed with deploying to production by merging to master branch.
+Lettergories currently has a little over 100 tests. Upon test succeeding, it proceeds to build the Docker image and push it to Google Container Registry. Before deploying the new changes, it runs database migrations. Afterwards, it performs a rolling update to the staging environment. Once a feature is tested on staging, I will proceed with deploying to production by merging to master branch.
 <p>&nbsp;</p>
 
 ### Logging and Monitoring
