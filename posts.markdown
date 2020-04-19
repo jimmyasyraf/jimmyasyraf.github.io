@@ -4,5 +4,5 @@
 
 layout: home
 title: Blog
-permalink: /posts/
+permalink: /blog/
 ---
