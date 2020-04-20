@@ -2,7 +2,7 @@
 layout: page
 ---
 
-<p class="highlights">Hello! 👋</p>
+<p class="highlights"><span>Hello!</span><span class="emoji wave"></span></p>
 
 <p class="highlights">I'm a full-stack software engineer based in Ottawa, Canada who enjoys putting things together and make things work. I develop a wide variety of apps from e-commerce platform to multiplayer online games. I also build robots because robots make our life easier, especially if you're a lazy person like me.</p>
 <p>&nbsp;</p>
@@ -16,7 +16,7 @@ layout: page
 - ROS
 <p>&nbsp;</p>
 
-### Things I've built
+### Projects
 <p>&nbsp;</p>
 
 ![Lettergories](/assets/lettergories_in_phone.png)
@@ -38,6 +38,18 @@ Available on [iOS](https://apps.apple.com/ca/app/lettergories/id1453368764)
 This robot has a LiDAR that can map its environment and navigate autonomously. Its onboard camera can detect objects and follow people.
 <p>&nbsp;</p>
 
+### Past clients
+
+![Redeal](/assets/redeal_on_laptop.png)
+#### Redeal
+ReDeal aims to help people maximize the profit from the sale of their home. The interactive home sale calculator helps customers to get a rough estimate of the value of their property.
+<p>&nbsp;</p>
+
+![M-Cube Engineering](/assets/mcube_on_laptop.png)
+#### M-Cube Engineering
+M-Cube is an engineering firm that provides a range of services and integrated maintenance solutions. The admin tool enables them to manage their quotation and invoices more efficiently.
+<p>&nbsp;</p>
+
 ### Want to work together?
 
 I'm currently accepting new projects.
@@ -52,6 +64,3 @@ I'm currently accepting new projects.
   <button type="submit" style="width:70px; height:30px; background-color: #0077ed; text-decoration: none; border: none; border-radius: 5px; color: #fff; cursor:pointer;">Send</button>
   <input type="hidden" name="_next" value="https://hazimiasyraf.com" />
 </form>
-
-
-[jekyll-organization]: https://github.com/jekyll

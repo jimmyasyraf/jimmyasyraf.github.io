@@ -173,6 +173,21 @@
   fill: #444452 !important;
 }
 
+.emoji {
+  margin: 0 5px;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  vertical-align: text-top;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position:center;
+}
+
+.wave {
+  background-image: url('/assets/emojis/wave.png') !important;
+}
+
 /**
  * Page content
  */

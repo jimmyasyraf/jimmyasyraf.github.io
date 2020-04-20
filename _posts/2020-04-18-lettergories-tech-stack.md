@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Lettergories' tech stack"
+title:  "Lettergories' Tech Stack"
 date:   2020-04-18 16:52:46 -0400
 categories: jekyll update
 excerpt: The server-side stack of Lettergories is built with Ruby on Rails, with Postgres as the relational database and Redis for queues and background jobs. It started off...
@@ -20,9 +20,9 @@ The server-side stack of Lettergories is built with Ruby on Rails, with Postgres
 
 After I introduced public match into the game, I added another background worker that is dedicated to running the matchmaking service. Having another background worker instead of sharing the same background worker and using multiple queues guarantees me that the jobs will run concurrently independent of each other.
 
-All the services in Lettergories are containerized and run inside a Kubernetes cluster on Google Cloud. Using Kubernetes over deploying it to Heroku gives me the ability to optimize infrastructural resources thanks to the more efficient use of hardware.
+All the services in Lettergories are containerized and run inside a Kubernetes cluster on Google Cloud. Using Kubernetes gives me the ability to optimize infrastructural resources thanks to the more efficient use of hardware.
 
-The client-side stack of Lettergories is built with React Native as it lets me write the same code for both iOS and Android. If I ever work on the web version of Lettergories, I can also reuse the same code too, well most of it.
+The client-side stack of Lettergories is built with React Native as it lets me write the same code for both iOS and Android. If I ever work on the web version of Lettergories, I can also reuse the same code too, well, most of it.
 <p>&nbsp;</p>
 
 ### The CI/CD pipeline
