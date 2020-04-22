@@ -20,6 +20,8 @@ The server-side stack of Lettergories is built with Ruby on Rails, with Postgres
 
 After I introduced public match into the game, I added another background worker that is dedicated to running the matchmaking service. Having another background worker instead of sharing the same background worker and using multiple queues guarantees me that the jobs will run concurrently independent of each other.
 
+Building a turn-based game, latency has a less pronounced effect but can still negatively impact the user experience. To reduce latency in waiting times between each rounds, I replaced Rails’ ActionCable with AnyCable. With AnyCable, I can use any (more performant) websocket server to replace ActionCable as it forwards the socket management via gRPC. Implementing it has cut an average of 4 seconds of waiting time.
+
 All the services in Lettergories are containerized and run inside a Kubernetes cluster on Google Cloud. Using Kubernetes gives me the ability to optimize infrastructural resources thanks to the more efficient use of hardware.
 
 The client-side stack of Lettergories is built with React Native as it lets me write the same code for both iOS and Android. If I ever work on the web version of Lettergories, I can also reuse the same code too, well, most of it.
