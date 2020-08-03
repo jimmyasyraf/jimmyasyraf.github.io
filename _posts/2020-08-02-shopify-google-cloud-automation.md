@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Automating my Shopify store with Google Cloud Functions"
-date:   2020-05-01 16:52:46 -0400
+date:   2020-08-02 16:52:46 -0400
 categories: jekyll update
 excerpt: Recently, I have launched my Shopify store OwnSticker, selling custom stickers that you can personalize easily and see the result rendered in real-time...
 ---
