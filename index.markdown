@@ -4,16 +4,13 @@ layout: page
 
 <p class="highlights"><span>Hello!</span><span class="emoji wave"></span></p>
 
-<p class="highlights">I'm a full-stack software engineer based in Ottawa, Canada who enjoys putting things together and make things work. I develop a wide variety of apps from e-commerce platform to multiplayer online games. I also build robots because robots make our life easier, especially if you're a lazy person like me.</p>
+<p class="highlights">I'm a full-stack software engineer based in Ottawa, Canada who enjoys putting things together and make things work. I develop a wide variety of apps from e-commerce platform, geospatial tools, to multiplayer online games. I also love building robots because robots make our life easier, especially if you're a lazy person like me.</p>
 <p>&nbsp;</p>
 
 ### My expertise
 - Ruby on Rails
 - React / React Native
 - Kubernetes
-- Arduino
-- OpenCV
-- ROS
 <p>&nbsp;</p>
 
 ### Projects
