@@ -1,0 +1,20 @@
+[
+  {
+    "title": "Siram",
+    "description": "Automatic Houseplant Irrigation.",
+    "logo":"/assets/siram-logo.png",
+    "photo":"/assets/siram-photo.jpg",
+    "imageWidth": 5700,
+    "imageHeight":3800,
+    "link": "https://siram.co"
+  },
+  {
+    "title": "RankReel",
+    "description": "Convert CSVs into animated ranking videos.",
+    "logo": "/assets/rankreel-logo.png",
+    "photo": "/assets/rankreel-photo.png",
+    "imageWidth": 2684,
+    "imageHeight": 1712,
+    "link": "https://rankreel.app"
+  }
+]

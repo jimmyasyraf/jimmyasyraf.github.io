@@ -1,0 +1,17 @@
+[
+  {
+    "title": "palantir/blueprintjs",
+    "description": "React-based UI toolkit optimized for building complex, data-dense web interfaces.",
+    "link": "https://blueprintjs.com"
+  },
+  {
+    "title": "maplibre/maplibre-react-native",
+    "description": "React Native library for building maps with the Mapbox iOS and Android mobile SDKs.",
+    "link": "https://maplibre.org/maplibre-react-native"
+  },
+  {
+    "title": "jimmyasyraf/brokjson_rb",
+    "description": "Ruby gem for GeoJSON compression.",
+    "link": "https://rubygems.org/gems/brokjson"
+  }
+]

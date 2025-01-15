@@ -1,0 +1,20 @@
+[
+  {
+    "company": "Braintree Technologies",
+    "position": "Software Engineering Lead",
+    "tenure": "2020 - Present",
+    "description": "Oversee the development of Gaia, a data platform tailored towards geospatial data as well as real-time robot operations that’s currently used by several leading palm oil industry players."
+  },
+  {
+    "company": "Ario",
+    "position": "Software Developer",
+    "tenure": "2018 - 2020",
+    "description": "Responsible for developing payments backend for Ario’s lending platform. Worked with bank’s EFT and ACH to process daily repayments based on the amortization schedule."
+  },
+  {
+    "company": "uOttawa Richard L’Abbé Makerspace",
+    "position": "Software Developer",
+    "tenure": "Spring 2018",
+    "description": "Managed and developed new features to Makerspace’s project-sharing website, Makerepo.com. Also created MakerRoom, a room-booking site for spaces in Makerspace."
+  }
+]
