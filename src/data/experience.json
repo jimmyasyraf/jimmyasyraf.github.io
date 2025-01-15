@@ -16,5 +16,11 @@
     "position": "Software Developer",
     "tenure": "Spring 2018",
     "description": "Managed and developed new features to Makerspace’s project-sharing website, Makerepo.com. Also created MakerRoom, a room-booking site for spaces in Makerspace."
+  },
+  {
+    "company": "Fave",
+    "position": "Software Engineering Intern",
+    "tenure": "Summer 2017",
+    "description": "Developed the backend for automating and optimizing the process of merchant onboarding, lead the API integration for digital signatures and developed the front end of an analytics web app for merchants to track sales and earnings."
   }
 ]
