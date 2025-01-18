@@ -104,7 +104,7 @@ export default function Home() {
     <div className="max-w-2xl mx-auto py-4 px-4">
       <section className="flex flex-col items-center">
         <Image
-          className="rounded-xl border shadow"
+          className="rounded-xl shadow"
           src="/assets/my-photo.jpg"
           alt="Hazimi Asyraf"
           width={100}
