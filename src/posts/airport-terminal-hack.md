@@ -1,6 +1,6 @@
 ---
 title:  'Airport terminal hack'
-date:   '2021-06-01'
+date:   '2017-08-04'
 category: Travel
 thumbnail: "/assets/terminal.jpg"
 ---

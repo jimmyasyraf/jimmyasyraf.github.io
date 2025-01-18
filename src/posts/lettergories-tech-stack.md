@@ -1,15 +1,13 @@
 ---
 title:  "Lettergories' Tech Stack"
-date:  "2020-04-18"
+date:  "2018-06-11"
 category: Tech
 thumbnail: "/assets/lettergories_architecture.png"
 ---
 
-> One of my 2020 resolution was to start blogging again after I stopped seven years ago. So here it is, only this time, instead of a life diary, I'll be focusing on writing about Ruby on Rails, React and robotics. Welcome!
-
 ### Background
 
-Almost a year ago, I released Lettergories, a cross-platform multiplayer online word game centered around players competing in finding words beginning with a letter that fits a few categories. It is available on [iOS](https://apps.apple.com/ca/app/lettergories/id1453368764) and [Android](https://play.google.com/store/apps/details?id=com.lettergoriesmobile&hl=en). The idea behind the game came from one of my childhood games I used to play with my friends at school on the back of our notebooks.
+Recently I just released Lettergories, a cross-platform multiplayer online word game centered around players competing in finding words beginning with a letter that fits a few categories. It is available on [iOS](https://apps.apple.com/ca/app/lettergories/id1453368764) and [Android](https://play.google.com/store/apps/details?id=com.lettergoriesmobile&hl=en). The idea behind the game came from one of my childhood games I used to play with my friends at school on the back of our notebooks.
 
 
 ### The stack

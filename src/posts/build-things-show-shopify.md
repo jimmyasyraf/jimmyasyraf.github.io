@@ -1,11 +1,11 @@
 ---
 title:  "Build Things, Show Shopify"
-date:   "2020-05-01"
+date:   "2018-10-01"
 category: Tech
 thumbnail: "/assets/shopify_event_2.JPG"
 ---
 
-In the summer of 2018, Shopify organized "Build Things, Show Shopify", an event bringing developers to develop and showcase their projects. We meet every few weeks at the Ottawa office, spanning the whole summer. Each meetup were different so it was great learning different things.
+This past summer, Shopify organized "Build Things, Show Shopify", an event bringing developers to develop and showcase their projects. We meet every few weeks at the Ottawa office, spanning the whole summer. Each meetup were different so it was great learning different things.
 1. Idea creation
 2. App architecture
 3. App development 1.0
