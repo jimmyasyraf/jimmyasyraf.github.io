@@ -3,6 +3,7 @@
     "title": "Siram",
     "description": "Automatic Houseplant Irrigation.",
     "logo":"/assets/siram-logo.png",
+    "logoBorder": false,
     "photo":"/assets/siram-photo.jpg",
     "imageWidth": 5700,
     "imageHeight":3800,
@@ -12,9 +13,28 @@
     "title": "RankReel",
     "description": "Convert CSVs into animated ranking videos.",
     "logo": "/assets/rankreel-logo.png",
+    "logoBorder": true,
     "photo": "/assets/rankreel-photo.png",
     "imageWidth": 2684,
     "imageHeight": 1712,
     "link": "https://rankreel.app"
+  },
+  {
+    "title": "Lettergories",
+    "description": "Players compete in finding words beginning with a letter that fits a few categories.",
+    "logo": "/assets/lettergories-logo.png",
+    "logoBorder": false,
+    "photo": "/assets/lettergories.png",
+    "imageWidth": 2070,
+    "imageHeight": 1242
+  },
+  {
+    "title": "Handship",
+    "description": "Pilot a spaceship through the fabric of space using your hand from the front-facing camera.",
+    "logo": "/assets/handship-logo.png",
+    "logoBorder": false,
+    "photo": "/assets/handship.png",
+    "imageWidth": 2061,
+    "imageHeight": 1242
   }
 ]

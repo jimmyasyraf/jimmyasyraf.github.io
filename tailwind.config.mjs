@@ -16,7 +16,17 @@ export default {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
-  		}
+  		},
+      typography: ({ theme }) => ({
+        DEFAULT: {
+          css: {
+            '--tw-prose-body': theme('colors.black'),
+            '--tw-prose-links': theme('colors.blue[600]'),
+            '--tw-prose-counters': theme('colors.black'),
+            '--tw-prose-bullets': theme('colors.black'),
+          }
+        }
+      })
   	}
   },
   plugins: [require("tailwindcss-animate"),require('@tailwindcss/typography')],

@@ -1,5 +1,4 @@
 import Markdown from 'markdown-to-jsx';
-import { Badge } from "@/components/ui/badge";
 import { getSortedPostsData } from '@/lib/posts';
 import { getPost } from '@/lib/post';
 import { format } from 'date-fns';
@@ -15,8 +14,10 @@ export default function BlogPost(props) {
 
   return (
     <div className="max-w-2xl mx-auto py-4 px-4">
-      <Badge variant="secondary">{post.data.category}</Badge>
-      <p className='text-sm font-normal text-zinc-700 mt-4 mb-4'>{format(new Date(post.data.date), "MMMM d, yyyy")}</p>
+      <p className="text-sm font-medium text-neutral-500">
+        {post.data.category.toUpperCase()}
+      </p>
+      <p className='text-sm font-medium text-neutral-500 mt-1 mb-5'>{format(new Date(post.data.date), "MMMM d, yyyy")}</p>
       <h1 className='text-3xl font-semibold'>{post.data.title}</h1>
       <div className='prose'>
       <Markdown>

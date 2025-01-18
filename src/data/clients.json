@@ -1,0 +1,17 @@
+[
+  {
+    "title": "US DOT Decals",
+    "link": "https://usdotdecals.com",
+    "description": "US DOT Decals offers compliant US Department of Transportation vehicle decals. They wanted a tool for customers to design and see a live-preview of their decals to boost conversion and I made that happen."
+  },
+  {
+    "title": "M-Cube Engineering",
+    "link": "https://m-cube.com.my",
+    "description": "M-Cube is an engineering firm that provides a range of services and integrated maintenance solutions. The admin tool I built for them enables them to manage their quotation and invoices more efficiently."
+  },
+  {
+    "title": "ReDeal",
+    "link": "https://www.redeal.ca",
+    "description": "ReDeal aims to help people maximize the profit from the sale of their home. I helped them build an interactive home sale calculator that helps customers to get a rough estimate of the value of their property instantly."
+  }
+]

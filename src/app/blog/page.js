@@ -1,13 +1,7 @@
-import { Space_Grotesk } from "next/font/google";
 import Link from "next/link";
 import { format } from 'date-fns';
-import { Card, CardContent, CardHeader } from '@/components/ui/card';
-import { Badge } from "@/components/ui/badge";
+import { Card, CardHeader } from '@/components/ui/card';
 import { getSortedPostsData } from '@/lib/posts.js';
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-})
 
 export default function Blog() {
   const posts = getSortedPostsData();
@@ -25,14 +19,14 @@ export default function Blog() {
                 </Link>
               </div>
               <div className="flex flex-1 flex-col gap-2">
-                <div>
-                <Badge variant="secondary">{post.category}</Badge>
-                </div>
+                <p className="text-sm font-medium text-neutral-500">
+                  {post.category.toUpperCase()}
+                </p>
                 <Link href={`/blog/${post.id}`}>
 
                   <h2 className={`text-lg sm:text-xl font-semibold`} >{post.title}</h2>
                 </Link>
-                <p className="text-base text-sm text-gray-700">{format(new Date(post.date), "MMMM d, yyyy")}</p>
+                <p className="text-sm font-medium text-neutral-500">{format(new Date(post.date), "MMMM d, yyyy")}</p>
               </div>
 
             </CardHeader>

@@ -1,12 +1,8 @@
 import "./globals.css";
-import { DM_Sans, Inter, Space_Grotesk } from "next/font/google";
+import { Inter } from "next/font/google";
 import { Header } from "@/components/ui/header";
 
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-})
-
-const dmSans = Inter({
+const font = Inter({
   subsets: ["latin"],
 })
 
@@ -19,7 +15,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${dmSans.className} antialiased`}
+        className={`${font.className} antialiased bg-neutral-100`}
       >
         <Header />
         {children}

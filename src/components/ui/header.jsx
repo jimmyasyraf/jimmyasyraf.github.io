@@ -26,12 +26,12 @@ export function Header() {
           <Link
             href="/"
           >
-            <h1 className={`font-normal text-sm text-gray-700`}>Home</h1>
+            <h1 className={`font-normal text-sm`}>Home</h1>
           </Link>
           <Link
             href="/blog"
           >
-            <h1 className={`font-normal text-sm text-gray-700`}>Blog</h1>
+            <h1 className={`font-normal text-sm`}>Blog</h1>
           </Link>
         </div>
       </div>
