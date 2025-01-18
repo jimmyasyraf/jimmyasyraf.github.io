@@ -111,7 +111,7 @@ export default function Home() {
           height={100}
         />
         <h1 className="font-semibold text-xl mt-4 text-center">Hazimi Asyraf</h1>
-        <h1 className={`font-semibold text-3xl mt-2 text-center bg-gradient-to-r from-blue-700 via-violet-600 via-pink-500 to-orange-500 inline-block text-transparent bg-clip-text`}>Software Engineer, Robotics Enthusiast</h1>
+        <h1 className={`font-semibold text-3xl mt-2 text-center bg-gradient-to-r from-sky-500 via-violet-600 via-pink-500 to-orange-500 inline-block text-transparent bg-clip-text`}>Software Engineer, Robotics Enthusiast</h1>
         <p className="mt-4 text-base font-medium text-center">I'm a full-stack software engineer based in Ottawa, Canada who enjoys putting things together and make things work. My favorite work lies at the intersection of design and development, creating experiences that look great and performant.</p>
         <p className="mt-4 text-base font-medium text-center">In the past, I've had the opportunity to develop software across a variety of domains, from financial platforms to geospatial tools. My main tools are Ruby on Rails and React.</p>
       </section>
