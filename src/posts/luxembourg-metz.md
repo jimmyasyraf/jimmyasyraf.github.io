@@ -2,7 +2,7 @@
 title:  'Luxembourg & Metz'
 date:   '2020-02-16'
 category: Travel
-thumbnail: "/assets/metz_alley.jpeg"
+thumbnail: "/assets/lux_2.jpeg"
 ---
 
 This is the crazy story of Zethy and I’s short getaway in winter 2020. We planned a simple trip to Luxembourg and Metz (France), but what we got was anything but simple. Here’s how it all went down.
@@ -29,7 +29,9 @@ We reached Metz around midnight, where Zethy’s best friend Rahmah was waiting 
 
 The next day, we took a train back to Luxembourg and spent the day exploring the historic city. We visited the Grand Ducal Palace and the National Museum of History and Art, learning about the country’s origins, its steel industry, and how it became the richest country in the world.
 
-![Luxembourg](/assets/lux.jpeg)
+![Luxembourg](/assets/lux_1.jpeg)
+
+![Luxembourg](/assets/lux_2.jpeg)
 
 The following day, we toured Metz, a charming French town with stunning architecture and rich Roman history. At the Museum of La Cour d’Or, we delved into Metz’s past. That evening, Rahmah hosted us for dinner, which was a perfect way to wrap up the day. Or was it.
 
