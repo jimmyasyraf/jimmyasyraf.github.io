@@ -24,6 +24,13 @@ export default {
             '--tw-prose-links': theme('colors.blue[600]'),
             '--tw-prose-counters': theme('colors.black'),
             '--tw-prose-bullets': theme('colors.black'),
+            img: {
+              borderRadius: theme('borderRadius.lg'),
+            },
+            p: {
+              lineHeight: theme('lineHeight.6'),
+              letterSpacing: theme('tracking.wide'),
+            }
           }
         }
       })
