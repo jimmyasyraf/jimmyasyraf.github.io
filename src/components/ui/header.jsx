@@ -1,15 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { Space_Grotesk } from "next/font/google";
-import { Button } from "@/components/ui/button";
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-})
 
 export function Header() {
-
   return (
     <nav className='sticky top-0 h-14 border-b bg-white z-50 backdrop-blur bg-opacity-70'>
       <div className="max-w-2xl mx-auto h-14 flex items-center justify-between px-4">
