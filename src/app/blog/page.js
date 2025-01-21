@@ -11,20 +11,17 @@ export default function Blog() {
       <div className="flex flex-col gap-4">
       {
         posts.map((post) => (
-          <Card key={post.id}>
-            <CardHeader className="flex-row gap-6 items-center">
-              <div className="w-32 sm:w-36 h-24 sm:h-28 overflow-hidden items-center justify-center flex">
-                <Link href={`/blog/${post.id}`}>
-                  <img className="object-cover" src={post.thumbnail}/>
-                </Link>
-              </div>
-              <div className="flex flex-1 flex-col gap-2">
+          <Card key={post.id} className="overflow-hidden">
+            <CardHeader className="p-0 flex-col sm:flex-row overflow-hidden">
+              <Link href={`/blog/${post.id}`}>
+                <img className="object-cover aspect-[4/3] w-full sm:w-48" src={post.thumbnail}/>
+              </Link>
+              <div className="flex flex-1 flex-col gap-2 p-6 m-0">
                 <p className="text-sm font-medium text-neutral-500">
                   {post.category.toUpperCase()}
                 </p>
                 <Link href={`/blog/${post.id}`}>
-
-                  <h2 className={`text-lg sm:text-xl font-semibold`} >{post.title}</h2>
+                  <h2 className={`text-lg font-semibold`} >{post.title}</h2>
                 </Link>
                 <p className="text-sm font-medium text-neutral-500">{format(new Date(post.date), "MMMM d, yyyy")}</p>
               </div>

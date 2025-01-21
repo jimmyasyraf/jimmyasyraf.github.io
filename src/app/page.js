@@ -118,7 +118,7 @@ export default function Home() {
 
       <section>
         <h1 className={`font-semibold text-2xl mt-8 mb-4 text-teal-600`}>Projects</h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {projects.map((project, i) => (
             <ProjectCard
               key={i}
