@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import {ChevronRight} from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -12,18 +11,16 @@ import experience from "@/data/experience.json";
 import clients from "@/data/clients.json";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 
-const ProjectCard = ({title, description, logo, logoBorder, photo, imageWidth, imageHeight, link}) => (
+const ProjectCard = ({title, description, logo, logoBorder, photo, link}) => (
   <ScrollReveal>
     <Card className='flex flex-col justify-between w-full'>
       <CardHeader>
         <div className="flex flex-row items-center">
           <div>
-            <Image
-              className={`rounded-md border-zinc-200 shadow ${logoBorder ? 'border' : ''}`}
+            <img
+              loading="lazy"
+              className={`h-10 w-10 rounded-md border-zinc-200 shadow ${logoBorder ? 'border' : ''}`}
               src={logo}
-              alt={title}
-              width={40}
-              height={40}
             />
           </div>
           {link ? (
@@ -45,11 +42,10 @@ const ProjectCard = ({title, description, logo, logoBorder, photo, imageWidth, i
         </div>
       </CardHeader>
       <CardContent className="flex flex-col">
-        <Image
+        <img
+          loading="lazy"
+          className="w-full"
           src={photo}
-          alt={title}
-          width={imageWidth}
-          height={imageHeight}
         />
       </CardContent>
     </Card>
@@ -113,12 +109,10 @@ export default function Home() {
     <div className="max-w-2xl mx-auto py-4 px-4">
       <section className="flex flex-col items-center">
         <ScrollReveal>
-        <Image
-          className="rounded-xl shadow"
+        <img
+          loading="lazy"
+          className="h-24 w-24 rounded-xl shadow"
           src="/assets/my-photo.jpg"
-          alt="Hazimi Asyraf"
-          width={100}
-          height={100}
         />
         </ScrollReveal>
         <ScrollReveal><h1 className="font-semibold text-xl mt-4 text-center">Hazimi Asyraf</h1></ScrollReveal>
@@ -140,8 +134,6 @@ export default function Home() {
               logo={project.logo}
               logoBorder={project.logoBorder}
               photo={project.photo}
-              imageWidth={project.imageWidth}
-              imageHeight={project.imageHeight}
               link={project.link}
             />
           ))}

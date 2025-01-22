@@ -16,7 +16,7 @@ export default function Blog() {
             <Card className="overflow-hidden w-full">
               <CardHeader className="p-0 flex-col sm:flex-row overflow-hidden">
                 <Link href={`/blog/${post.id}`}>
-                  <img className="object-cover aspect-[4/3] w-full sm:w-56" src={post.thumbnail}/>
+                  <img loading="lazy" className="object-cover aspect-[4/3] w-full sm:w-56" src={post.thumbnail}/>
                 </Link>
                 <div className="flex flex-1 flex-col gap-2 p-6 m-0">
                   <p className="text-sm font-medium text-neutral-500">
