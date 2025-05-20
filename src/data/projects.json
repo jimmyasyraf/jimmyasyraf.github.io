@@ -20,7 +20,8 @@
     "description": "Players compete in finding words beginning with a letter that fits a few categories.",
     "logo": "/assets/lettergories-logo.png",
     "logoBorder": false,
-    "photo": "/assets/lettergories.png"
+    "photo": "/assets/lettergories.png",
+    "link": "https://lettergories.com"
   },
   {
     "title": "Handship",
