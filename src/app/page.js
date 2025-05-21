@@ -44,7 +44,7 @@ const ProjectCard = ({title, description, logo, logoBorder, photo, link}) => (
       <CardContent className="flex flex-col">
         <img
           loading="lazy"
-          className="w-full"
+          className="w-full rounded-sm"
           src={photo}
         />
       </CardContent>
