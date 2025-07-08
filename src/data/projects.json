@@ -24,10 +24,11 @@
     "link": "https://lettergories.com"
   },
   {
-    "title": "Handship",
-    "description": "Pilot a spaceship through the fabric of space using your hand from the front-facing camera.",
-    "logo": "/assets/handship-logo.png",
+    "title": "GitReward",
+    "description": "Bounty system for GitHub issues running on smart contracts on Ethereum L2.",
+    "logo": "/assets/gitreward-logo.png",
     "logoBorder": false,
-    "photo": "/assets/handship.png"
+    "photo": "/assets/gitreward-screenshot.png",
+    "link": "https://gitreward.com"
   }
 ]
