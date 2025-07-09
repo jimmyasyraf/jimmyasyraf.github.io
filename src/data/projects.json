@@ -25,7 +25,7 @@
   },
   {
     "title": "GitReward",
-    "description": "Bounty system for GitHub issues running on smart contracts on Ethereum L2.",
+    "description": "Bounty system for GitHub issues based on smart contracts on Ethereum L2.",
     "logo": "/assets/gitreward-logo.png",
     "logoBorder": false,
     "photo": "/assets/gitreward-screenshot.png",
