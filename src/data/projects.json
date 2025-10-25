@@ -1,13 +1,5 @@
 [
   {
-    "title": "Siram",
-    "description": "Automatic Houseplant Irrigation.",
-    "logo":"/assets/siram-logo.png",
-    "logoBorder": false,
-    "photo":"/assets/siram-photo.jpg",
-    "link": "https://siram.co"
-  },
-  {
     "title": "RankReel",
     "description": "Convert CSVs into animated ranking videos.",
     "logo": "/assets/rankreel-logo.png",
@@ -22,6 +14,14 @@
     "logoBorder": false,
     "photo": "/assets/lettergories.png",
     "link": "https://lettergories.com"
+  },
+  {
+    "title": "Rails Marketplace Template",
+    "description": "A Ruby on Rails starter kit for your marketplace idea.",
+    "logo": "/assets/rails-marketplace-template-logo.png",
+    "logoBorder": false,
+    "photo": "/assets/rails-marketplace-template-screenshot.png",
+    "link": "https://railsmarketplacetemplate.com"
   },
   {
     "title": "GitReward",
