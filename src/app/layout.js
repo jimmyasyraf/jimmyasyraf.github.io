@@ -1,6 +1,7 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
 import { Header } from "@/components/ui/header";
+import { GoogleAnalytics } from '@next/third-parties/google';
 
 const font = Inter({
   subsets: ["latin"],
@@ -20,6 +21,7 @@ export default function RootLayout({ children }) {
         <Header />
         {children}
       </body>
+      <GoogleAnalytics gaId={'G-V8R4LZ2TC4'} />
     </html>
   );
 }
