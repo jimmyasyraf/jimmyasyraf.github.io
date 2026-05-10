@@ -5,6 +5,8 @@ category: Tech
 thumbnail: "/assets/lettergories_architecture.png"
 ---
 
+> The original Lettergories has been discontinued and revived years later as a [web app](/blog/lettergories-solid-cable-solid-queue-turbo)
+
 ### Background
 
 Recently I just released Lettergories, a cross-platform multiplayer online word game centered around players competing in finding words beginning with a letter that fits a few categories. It is available on [iOS](https://apps.apple.com/ca/app/lettergories/id1453368764) and [Android](https://play.google.com/store/apps/details?id=com.lettergoriesmobile&hl=en). The idea behind the game came from one of my childhood games I used to play with my friends at school on the back of our notebooks.

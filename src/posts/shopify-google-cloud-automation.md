@@ -5,6 +5,8 @@ category: Tech
 thumbnail: "/assets/shopify_automation.png"
 ---
 
+> OwnSticker has been discontinued
+
 Recently, I have launched my Shopify store [OwnSticker](https://ownsticker.com), selling custom stickers that you can personalize easily and see the result rendered in real-time. This was achieved with some SVG and Javascript magic.
 
 The problem is that there are manual processes involved that a lazy person like me would very much not want to do and would love to automate. This includes preparing the final file for printing after an order is placed and uploading and sending it over to my supplier. Luckily, Shopify provides webhook triggers for specific events and my supplier provides an API for placing orders. So this is only a matter of bridging those two.
