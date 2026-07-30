@@ -1,30 +1,20 @@
-"use client";
-
 import Link from "next/link";
 
 export function Header() {
   return (
-    <nav className='sticky top-0 h-14 border-b bg-white z-50 backdrop-blur bg-opacity-70'>
-      <div className="max-w-2xl mx-auto h-14 flex items-center justify-between px-4">
-        <div>
-          <Link
-            href="/"
-          >
-            <h1 className={` font-semibold text-lg`}>Hazimi Asyraf</h1>
-          </Link>
-        </div>
+    <nav className='sticky top-0 z-50 border-b border-neutral-200 bg-white/80 backdrop-blur'>
+      <div className="max-w-2xl mx-auto h-14 flex items-center justify-between px-6 text-sm">
+        <Link href="/" className="text-black">
+          hazimi<span className="text-neutral-400">@</span>asyraf<span className="text-neutral-400">:~$</span>
+          <span aria-hidden="true" className="cursor-blink text-neutral-400"> ▊</span>
+        </Link>
 
-
-        <div className="flex flex-row gap-8">
-          <Link
-            href="/"
-          >
-            <h1 className={`font-normal text-sm`}>Home</h1>
+        <div className="flex flex-row gap-6">
+          <Link href="/" className="text-neutral-500 hover:text-black transition-colors">
+            ~/home
           </Link>
-          <Link
-            href="/blog"
-          >
-            <h1 className={`font-normal text-sm`}>Blog</h1>
+          <Link href="/blog" className="text-neutral-500 hover:text-black transition-colors">
+            ~/blog
           </Link>
         </div>
       </div>

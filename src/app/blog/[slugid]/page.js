@@ -13,17 +13,16 @@ export default function BlogPost(props) {
   const post = getPost(slug);
 
   return (
-    <div className="max-w-2xl mx-auto py-4 px-4">
-      <p className="text-sm font-medium text-neutral-500">
-        {post.data.category.toUpperCase()}
+    <main className="max-w-2xl mx-auto px-6 pt-14">
+      <p className="text-xs text-neutral-400">
+        {format(new Date(post.data.date), "yyyy-MM-dd")} · {post.data.category.toLowerCase()}
       </p>
-      <p className='text-sm font-medium text-neutral-500 mt-1 mb-5'>{format(new Date(post.data.date), "MMMM d, yyyy")}</p>
-      <h1 className='text-3xl font-semibold'>{post.data.title}</h1>
-      <div className='prose'>
-      <Markdown>
-        {post.content}
-      </Markdown>
+      <h1 className="mt-3 text-2xl sm:text-3xl text-black font-medium tracking-tight">{post.data.title}</h1>
+      <div className="prose prose-sm mt-10">
+        <Markdown>
+          {post.content}
+        </Markdown>
       </div>
-    </div>
+    </main>
   )
 }

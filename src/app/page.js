@@ -1,152 +1,110 @@
 import Link from "next/link";
-import {ChevronRight} from 'lucide-react';
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
 import projects from "@/data/projects.json";
 import contributions from "@/data/contributions.json";
 import experience from "@/data/experience.json";
 import clients from "@/data/clients.json";
-import { ScrollReveal } from "@/components/ui/scroll-reveal";
+import { AsciiPortrait } from "@/components/ui/ascii-portrait";
+import { Typewriter } from "@/components/ui/typewriter";
 
-const ProjectCard = ({title, description, logo, logoBorder, photo, link}) => (
-  <ScrollReveal>
-    <Card className='flex flex-col justify-between w-full'>
-      <CardHeader>
-        <div className="flex flex-row items-center">
-          <div>
-            <img
-              loading="lazy"
-              className={`h-10 w-10 rounded-md border-zinc-200 shadow ${logoBorder ? 'border' : ''}`}
-              src={logo}
-            />
-          </div>
-          {link ? (
-            <Link href={link} className="flex flex-row items-center">
-              <h2 className={`ml-2 font-semibold text-base text-teal-600`}>{title}</h2>
-              <ChevronRight className='ml-1 w-4 h-4 text-teal-600'/>
-            </Link>
-          ): (
-            <div className="flex flex-row items-center">
-              <h2 className={`ml-2 font-semibold text-base text-teal-600`}>{title}</h2>
-              <div className="ml-2 border rounded-lg border-neutral-400 p-1">
-                <p className="text-xs text-neutral-400 font-semibold">Archived</p>
-              </div>
-            </div>
-          )}
-        </div>
-        <div>
-          <p className="text-sm font-medium">{description}</p>
-        </div>
-      </CardHeader>
-      <CardContent className="flex flex-col">
-        <img
-          loading="lazy"
-          className="w-full rounded-sm"
-          src={photo}
-        />
-      </CardContent>
-    </Card>
-  </ScrollReveal>
-)
+const SectionHeading = ({ index, title }) => (
+  <div className="flex items-baseline justify-between mb-10">
+    <h2 className="text-sm text-black">
+      <span className="text-neutral-400">##</span> {title}
+    </h2>
+    <span className="text-xs text-neutral-300">[{index}]</span>
+  </div>
+);
 
-const ContributionCard = ({title, description, link}) => (
-  <ScrollReveal>
-    <Card className='w-full'>
-      <CardContent className='p-6 w-full'>
-        {link ? (
-            <Link href={link} className="flex flex-row items-center">
-              <h2 className={`font-semibold text-base text-green-600`}>{title}</h2>
-              <ChevronRight className='ml-1 w-4 h-4 text-green-600'/>
-            </Link>
-        ) : (
-          <h2 className={`font-semibold text-base`}>{title}</h2>
+const HoverCaret = () => (
+  <span aria-hidden="true" className="absolute -left-4 text-neutral-400 opacity-0 group-hover:opacity-100 transition-opacity">&gt;</span>
+);
+
+const ProjectRow = ({ title, description, link }) => {
+  const inner = (
+    <>
+      <div className="flex items-baseline justify-between gap-4">
+        <h3 className="relative text-sm text-black">
+          <HoverCaret />
+          {title}
+          {link && <span aria-hidden="true" className="text-neutral-400 group-hover:text-black transition-colors"> ↗</span>}
+        </h3>
+        {!link && (
+          <span className="text-xs text-neutral-400 border border-neutral-300 px-2 py-0.5 shrink-0">archived</span>
         )}
-        <span className="text-sm font-medium">{description}</span>
-      </CardContent>
-    </Card>
-  </ScrollReveal>
-)
+      </div>
+      <p className="mt-2 text-sm text-neutral-500 leading-relaxed">{description}</p>
+    </>
+  );
 
-const ExperienceCard = ({company, position, tenure, description}) => (
-  <ScrollReveal>
-    <Card className='w-full'>
-      <CardContent className='p-6'>
-        <h2 className={`font-semibold text-base text-violet-600`}>{company}</h2>
-        <span className="font-medium text-sm">{tenure}</span>
+  return link ? (
+    <Link href={link} className="group block border-t border-neutral-200 py-6">
+      {inner}
+    </Link>
+  ) : (
+    <div className="group border-t border-neutral-200 py-6">{inner}</div>
+  );
+};
 
-        <Separator className='my-2'/>
-
-        <h3 className="font-semibold text-base text-violet-600">{position}</h3>
-        <p className="mt-2 text-sm font-medium">{description}</p>
-      </CardContent>
-    </Card>
-  </ScrollReveal>
-)
-
-const ClientCard = ({title, description, link}) => (
-  <ScrollReveal>
-    <Card className='w-full'>
-      <CardContent className='p-6'>
-        {link ? (
-            <Link href={link} className="flex flex-row items-center">
-              <h2 className={`font-semibold text-base text-orange-600`}>{title}</h2>
-              <ChevronRight className='ml-1 w-4 h-4 text-orange-600'/>
-            </Link>
-        ) : (
-          <h2 className={`font-semibold text-base`}>{title}</h2>
-        )}
-        <span className="text-sm font-medium">{description}</span>
-      </CardContent>
-    </Card>
-  </ScrollReveal>
-)
+const ExperienceRow = ({ company, position, tenure, description }) => (
+  <div className="border-t border-neutral-200 py-6 grid grid-cols-1 sm:grid-cols-[9rem_1fr] gap-2 sm:gap-8">
+    <span className="text-xs text-neutral-400 sm:pt-0.5">{tenure}</span>
+    <div>
+      <h3 className="text-sm text-black">{company}</h3>
+      <p className="mt-1 text-xs text-neutral-400">{position}</p>
+      <p className="mt-3 text-sm text-neutral-500 leading-relaxed">{description}</p>
+    </div>
+  </div>
+);
 
 export default function Home() {
   return (
-    <div className="max-w-2xl mx-auto py-4 px-4">
-      <section className="flex flex-col items-center">
-        <ScrollReveal>
-        <img
-          loading="lazy"
-          className="h-24 w-24 rounded-xl shadow"
-          src="/assets/my-photo.jpg"
-        />
-        </ScrollReveal>
-        <ScrollReveal><h1 className="font-semibold text-xl mt-4 text-center">Hazimi Asyraf</h1></ScrollReveal>
-        <ScrollReveal><h1 className={`font-semibold text-3xl mt-2 text-center bg-gradient-to-r from-sky-500 via-violet-600 via-pink-500 to-orange-500 inline-block text-transparent bg-clip-text`}>Software Engineer, Robotics Enthusiast</h1></ScrollReveal>
-        <ScrollReveal><p className="mt-4 text-base font-medium text-center">I'm a full-stack software engineer based in Ottawa, Canada who enjoys putting things together and make things work. My favorite work lies at the intersection of design and development, creating experiences that look great and performant.</p></ScrollReveal>
-        <ScrollReveal><p className="mt-4 text-base font-medium text-center">In the past, I've had the opportunity to develop software across a variety of domains, from financial platforms to geospatial tools. My main tools are Ruby on Rails and React.</p></ScrollReveal>
+    <main className="max-w-2xl mx-auto px-6">
+      <section className="pt-14 flex flex-col items-center">
+        <AsciiPortrait />
+
+        <div className="w-full mt-10">
+          <p className="text-xs text-neutral-400">$ whoami</p>
+          <h1 className="mt-3 text-2xl sm:text-3xl text-black font-medium tracking-tight">Hazimi Asyraf</h1>
+          <p className="mt-2 text-sm text-neutral-600 h-5"><Typewriter /></p>
+
+          <p className="mt-10 text-sm leading-relaxed">
+            I&apos;m a full-stack software engineer based in Ottawa, Canada who enjoys
+            putting things together and making things work. My favorite work lies at
+            the intersection of design and development, creating experiences that
+            look great and stay performant.
+          </p>
+          <p className="mt-4 text-sm leading-relaxed">
+            In the past, I&apos;ve had the opportunity to develop software across a
+            variety of domains, from financial platforms to geospatial tools. My
+            main tools are Ruby on Rails and React.
+          </p>
+
+          <p className="mt-8 text-xs text-neutral-500 flex items-center gap-2">
+            <span aria-hidden="true" className="inline-block h-1.5 w-1.5 rounded-full bg-green-500 animate-pulse" />
+            status: open to interesting work
+          </p>
+        </div>
       </section>
 
-      <section>
-        <ScrollReveal>
-          <h1 className={`font-semibold text-2xl mt-8 mb-4 text-teal-600`}>Projects</h1>
-        </ScrollReveal>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <section className="mt-24">
+        <SectionHeading index="01" title="projects" />
+        <div>
           {projects.map((project, i) => (
-            <ProjectCard
+            <ProjectRow
               key={i}
               title={project.title}
               description={project.description}
-              logo={project.logo}
-              logoBorder={project.logoBorder}
-              photo={project.photo}
               link={project.link}
             />
           ))}
         </div>
       </section>
 
-      <section>
-        <ScrollReveal>
-          <h1 className={`font-semibold text-2xl mt-8 mb-4 text-green-600`}>Open Source Contributions</h1>
-        </ScrollReveal>
-        <div className="flex flex-col gap-4">
+      <section className="mt-24">
+        <SectionHeading index="02" title="open source" />
+        <div>
           {contributions.map((contribution, i) => (
-            <ContributionCard
+            <ProjectRow
               key={i}
               title={contribution.title}
               description={contribution.description}
@@ -156,13 +114,11 @@ export default function Home() {
         </div>
       </section>
 
-      <section>
-        <ScrollReveal>
-          <h1 className={`font-semibold text-2xl mt-8 mb-4 text-violet-600`}>Experience</h1>
-        </ScrollReveal>
-        <div className="flex flex-col gap-4">
+      <section className="mt-24">
+        <SectionHeading index="03" title="experience" />
+        <div>
           {experience.map((ex, i) => (
-            <ExperienceCard
+            <ExperienceRow
               key={i}
               company={ex.company}
               position={ex.position}
@@ -173,13 +129,11 @@ export default function Home() {
         </div>
       </section>
 
-      <section>
-        <ScrollReveal>
-          <h1 className={`font-semibold text-2xl mt-8 mb-4 text-orange-600`}>Clients</h1>
-        </ScrollReveal>
-        <div className="flex flex-col gap-4">
+      <section className="mt-24">
+        <SectionHeading index="04" title="clients" />
+        <div>
           {clients.map((client, i) => (
-            <ClientCard
+            <ProjectRow
               key={i}
               title={client.title}
               description={client.description}
@@ -189,28 +143,31 @@ export default function Home() {
         </div>
       </section>
 
-      <section>
-        <ScrollReveal>
-          <h1 className={`font-semibold text-2xl mt-8 mb-4 text-blue-600`}>Contact</h1>
-        </ScrollReveal>
-
-        <ScrollReveal>
-          <Card>
-            <CardContent className='p-6'>
-              <p className="text-base mb-2 font-medium">Want to work together?</p>
-              <form action="https://formspree.io/jimmyasyraf@gmail.com" method="POST" className="space-y-4">
-                <Input className="focus-visible:ring-blue-600" name="email" type="email" placeholder="Your email" />
-
-                <Textarea name="message" placeholder="Your message" className="focus-visible:ring-blue-600"/>
-
-                <Button type="submit" className='bg-blue-600 hover:bg-blue-500'>Submit</Button>
-                <Input type="hidden" name="_next" value="https://hazimiasyraf.com" />
-              </form>
-            </CardContent>
-          </Card>
-        </ScrollReveal>
-
+      <section className="mt-24">
+        <SectionHeading index="05" title="contact" />
+        <p className="text-xs text-neutral-400 mb-6">$ mail -s &quot;want to work together?&quot;</p>
+        <form action="https://formspree.io/jimmyasyraf@gmail.com" method="POST" className="space-y-4">
+          <input
+            name="email"
+            type="email"
+            placeholder="you@example.com"
+            className="w-full bg-transparent border border-neutral-300 px-4 py-3 text-sm text-black placeholder:text-neutral-400 focus:border-black focus:outline-none"
+          />
+          <textarea
+            name="message"
+            rows={5}
+            placeholder="your message"
+            className="w-full bg-transparent border border-neutral-300 px-4 py-3 text-sm text-black placeholder:text-neutral-400 focus:border-black focus:outline-none resize-y"
+          />
+          <button
+            type="submit"
+            className="border border-neutral-400 px-6 py-3 text-sm text-black hover:bg-black hover:text-white transition-colors"
+          >
+            [ send ]
+          </button>
+          <input type="hidden" name="_next" value="https://hazimiasyraf.com" />
+        </form>
       </section>
-    </div>
+    </main>
   );
 }

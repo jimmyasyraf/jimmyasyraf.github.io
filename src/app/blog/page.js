@@ -1,39 +1,35 @@
 import Link from "next/link";
 import { format } from 'date-fns';
-import { Card, CardHeader } from '@/components/ui/card';
 import { getSortedPostsData } from '@/lib/posts.js';
-import { ScrollReveal } from "@/components/ui/scroll-reveal";
 
 export default function Blog() {
   const posts = getSortedPostsData();
 
   return (
-    <div className="max-w-2xl mx-auto py-4 px-4">
-      <div className="flex flex-col gap-4">
-      {
-        posts.map((post) => (
-          <ScrollReveal key={post.id}>
-            <Card className="overflow-hidden w-full">
-              <CardHeader className="p-0 flex-col sm:flex-row overflow-hidden">
-                <Link href={`/blog/${post.id}`}>
-                  <img loading="lazy" className="object-cover aspect-[4/3] w-full sm:w-56" src={post.thumbnail}/>
-                </Link>
-                <div className="flex flex-1 flex-col gap-2 p-6 m-0">
-                  <p className="text-sm font-medium text-neutral-500">
-                    {post.category.toUpperCase()}
-                  </p>
-                  <Link href={`/blog/${post.id}`}>
-                    <h2 className={`text-lg font-semibold`} >{post.title}</h2>
-                  </Link>
-                  <p className="text-sm font-medium text-neutral-500">{format(new Date(post.date), "MMMM d, yyyy")}</p>
-                </div>
+    <main className="max-w-2xl mx-auto px-6 pt-14">
+      <p className="text-xs text-neutral-400">$ ls -lt ~/blog</p>
+      <h1 className="mt-3 mb-12 text-2xl text-black font-medium tracking-tight">blog</h1>
 
-              </CardHeader>
-            </Card>
-          </ScrollReveal>
-        ))
-      }
+      <div>
+        {posts.map((post) => (
+          <Link
+            key={post.id}
+            href={`/blog/${post.id}`}
+            className="group flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-6 border-t border-neutral-200 py-5"
+          >
+            <span className="text-xs text-neutral-400 tabular-nums shrink-0 sm:w-24">
+              {format(new Date(post.date), "yyyy-MM-dd")}
+            </span>
+            <span className="relative flex-1 text-sm text-neutral-700 group-hover:text-black transition-colors">
+              <span aria-hidden="true" className="absolute -left-4 text-neutral-400 opacity-0 group-hover:opacity-100 transition-opacity">&gt;</span>
+              {post.title}
+            </span>
+            <span className="text-xs text-neutral-300 shrink-0">
+              {post.category.toLowerCase()}
+            </span>
+          </Link>
+        ))}
       </div>
-    </div>
+    </main>
   )
 }

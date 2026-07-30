@@ -20,16 +20,32 @@ export default {
       typography: ({ theme }) => ({
         DEFAULT: {
           css: {
-            '--tw-prose-body': theme('colors.black'),
-            '--tw-prose-links': theme('colors.blue[600]'),
-            '--tw-prose-counters': theme('colors.black'),
-            '--tw-prose-bullets': theme('colors.black'),
+            '--tw-prose-body': theme('colors.neutral[600]'),
+            '--tw-prose-headings': theme('colors.black'),
+            '--tw-prose-lead': theme('colors.neutral[600]'),
+            '--tw-prose-links': theme('colors.black'),
+            '--tw-prose-bold': theme('colors.black'),
+            '--tw-prose-counters': theme('colors.neutral[500]'),
+            '--tw-prose-bullets': theme('colors.neutral[400]'),
+            '--tw-prose-hr': theme('colors.neutral[200]'),
+            '--tw-prose-quotes': theme('colors.neutral[700]'),
+            '--tw-prose-quote-borders': theme('colors.neutral[300]'),
+            '--tw-prose-captions': theme('colors.neutral[500]'),
+            '--tw-prose-code': theme('colors.black'),
+            '--tw-prose-pre-code': theme('colors.neutral[700]'),
+            '--tw-prose-pre-bg': theme('colors.neutral[100]'),
+            '--tw-prose-th-borders': theme('colors.neutral[300]'),
+            '--tw-prose-td-borders': theme('colors.neutral[200]'),
+            a: {
+              textDecorationColor: theme('colors.neutral[400]'),
+              textUnderlineOffset: '3px',
+            },
             img: {
-              borderRadius: theme('borderRadius.lg'),
+              borderRadius: '0px',
+              border: `1px solid ${theme('colors.neutral[200]')}`,
             },
             p: {
-              lineHeight: theme('lineHeight.6'),
-              letterSpacing: theme('tracking.wide'),
+              lineHeight: theme('lineHeight.7'),
             }
           }
         }
