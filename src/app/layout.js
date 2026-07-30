@@ -34,8 +34,8 @@ export default function RootLayout({ children }) {
         <footer className="max-w-2xl mx-auto px-6 mt-24 py-10 border-t border-neutral-200 flex items-center justify-between font-mono text-xs text-neutral-400">
           <span>© 2026 hazimi asyraf</span>
           <div className="flex gap-6">
-            <Link href="https://github.com/jimmyasyraf" className="hover:text-black transition-colors">github</Link>
-            <Link href="mailto:jimmyasyraf@gmail.com" className="hover:text-black transition-colors">email</Link>
+            <Link href="https://github.com/jimmyasyraf" className="link-underline hover:text-black transition-colors">github</Link>
+            <Link href="mailto:jimmyasyraf@gmail.com" className="link-underline hover:text-black transition-colors">email</Link>
           </div>
         </footer>
       </body>

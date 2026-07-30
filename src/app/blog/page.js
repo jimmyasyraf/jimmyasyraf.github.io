@@ -7,9 +7,9 @@ export default function Blog() {
 
   return (
     <main className="max-w-2xl mx-auto px-6 pt-14">
-      <h1 className="mb-12 text-2xl text-black font-semibold tracking-tight">Blog</h1>
+      <h1 className="anim-rise mb-12 text-2xl text-black font-semibold tracking-tight">Blog</h1>
 
-      <div>
+      <div className="anim-rise anim-delay-1">
         {posts.map((post) => (
           <Link
             key={post.id}

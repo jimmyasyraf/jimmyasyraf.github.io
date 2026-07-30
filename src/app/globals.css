@@ -34,8 +34,76 @@
   mask-image: linear-gradient(to bottom, black 62%, transparent 100%);
 }
 
+/* --- page-load animations ------------------------------------------- */
+@keyframes materialize {
+  from {
+    opacity: 0;
+    filter: blur(3px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.anim-materialize {
+  animation: materialize 1.2s ease-out both;
+}
+
+.anim-rise {
+  animation: rise 0.55s ease-out both;
+}
+
+.anim-delay-1 { animation-delay: 0.1s; }
+.anim-delay-2 { animation-delay: 0.2s; }
+.anim-delay-3 { animation-delay: 0.3s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .anim-materialize,
+  .anim-rise {
+    animation: none;
+  }
+}
+
 @layer utilities {
   .inherit {
     display: inherit;
+  }
+
+  /* underline that grows from the left on hover */
+  .link-underline {
+    position: relative;
+  }
+
+  .link-underline::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    height: 1px;
+    width: 0;
+    background: currentColor;
+    transition: width 0.25s ease;
+  }
+
+  .link-underline:hover::after {
+    width: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .link-underline::after {
+      transition: none;
+    }
   }
 }

@@ -9,10 +9,10 @@ export function Header() {
         </Link>
 
         <div className="flex flex-row gap-6 font-mono text-xs">
-          <Link href="/" className="text-neutral-500 hover:text-black transition-colors">
+          <Link href="/" className="link-underline text-neutral-500 hover:text-black transition-colors">
             home
           </Link>
-          <Link href="/blog" className="text-neutral-500 hover:text-black transition-colors">
+          <Link href="/blog" className="link-underline text-neutral-500 hover:text-black transition-colors">
             blog
           </Link>
         </div>
