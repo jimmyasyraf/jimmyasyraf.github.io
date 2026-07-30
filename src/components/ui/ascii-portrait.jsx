@@ -71,6 +71,8 @@ const ART = `                                                     .+*#*%*#%#%@%#
 ##%%@@%%%@@@@%@@@@@@@@@@%%@@@@@@%%@@%%%@@@%%%%@%%%%%%%%%%%%%%%%%@%###%%%%%%%%%%%@%#%%%@@@@@%%%%%%%@@%%%%@@@%%@@@@@@@@@@%@%%@@%%%`;
 
 const GLYPHS = "@%#*+=-:.";
+const LIGHT_GLYPHS = ".:·-+ .·- ";
+const NOISE_RATIO = 0.3;
 const DURATION = 2200;
 const TICK = 50;
 
@@ -88,14 +90,18 @@ export function AsciiPortrait() {
       const rowCount = ART.split("\n").length;
 
       // each visible glyph settles at its own moment: a loose top-to-bottom
-      // sweep with per-character jitter, like a split-flap board resolving
+      // sweep with per-character jitter, like a split-flap board resolving.
+      // a sparse fraction of the empty space churns faint static that
+      // dissolves early, so the portrait emerges from a light haze
       let row = 0;
       const settleAt = chars.map((c) => {
         if (c === "\n") {
           row++;
           return 0;
         }
-        if (c === " ") return 0;
+        if (c === " ") {
+          return Math.random() < NOISE_RATIO ? Math.random() * DURATION * 0.4 : 0;
+        }
         return (row / rowCount) * DURATION * 0.5 + Math.random() * DURATION * 0.5;
       });
 
@@ -111,10 +117,13 @@ export function AsciiPortrait() {
         let out = "";
         for (let i = 0; i < chars.length; i++) {
           const c = chars[i];
-          out +=
-            c === " " || c === "\n" || elapsed >= settleAt[i]
-              ? c
-              : GLYPHS[(Math.random() * GLYPHS.length) | 0];
+          if (c === "\n" || elapsed >= settleAt[i]) {
+            out += c;
+          } else if (c === " ") {
+            out += LIGHT_GLYPHS[(Math.random() * LIGHT_GLYPHS.length) | 0];
+          } else {
+            out += GLYPHS[(Math.random() * GLYPHS.length) | 0];
+          }
         }
         el.textContent = out;
       };
