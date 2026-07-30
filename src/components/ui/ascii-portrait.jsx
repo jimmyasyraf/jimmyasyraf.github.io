@@ -1,3 +1,7 @@
+"use client";
+
+import { useEffect, useRef } from "react";
+
 const ART = `                                                     .+*#*%*#%#%@%##@#:
                                                    -***#%%%%%@%%%%%@@#*%%%#.
                                                 -=***%%##%%@@@%%@@##@@@@##%%+*%:
@@ -66,10 +70,79 @@ const ART = `                                                     .+*#*%*#%#%@%#
 #%%%@@%@@@@@@#@@@@@@@@@%%%%@@@@@@%%%%%@@@%%%%%@%%%%%%%%%%%%%@%%%*##%@%%@%%%%%%#%@%%#%####%@%@%%@%@@@%@%@%@@@@%@%%@@@@%@@%@%%%%%%
 ##%%@@%%%@@@@%@@@@@@@@@@%%@@@@@@%%@@%%%@@@%%%%@%%%%%%%%%%%%%%%%%@%###%%%%%%%%%%%@%#%%%@@@@@%%%%%%%@@%%%%@@@%%@@@@@@@@@@%@%%@@%%%`;
 
+const GLYPHS = "@%#*+=-:.";
+const DURATION = 2200;
+const TICK = 50;
+
 export function AsciiPortrait() {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const el = ref.current;
+    let interval;
+
+    const startDecode = () => {
+      const chars = ART.split("");
+      const rowCount = ART.split("\n").length;
+
+      // each visible glyph settles at its own moment: a loose top-to-bottom
+      // sweep with per-character jitter, like a split-flap board resolving
+      let row = 0;
+      const settleAt = chars.map((c) => {
+        if (c === "\n") {
+          row++;
+          return 0;
+        }
+        if (c === " ") return 0;
+        return (row / rowCount) * DURATION * 0.5 + Math.random() * DURATION * 0.5;
+      });
+
+      const start = performance.now();
+
+      const renderFrame = () => {
+        const elapsed = performance.now() - start;
+        if (elapsed >= DURATION) {
+          el.textContent = ART;
+          clearInterval(interval);
+          return;
+        }
+        let out = "";
+        for (let i = 0; i < chars.length; i++) {
+          const c = chars[i];
+          out +=
+            c === " " || c === "\n" || elapsed >= settleAt[i]
+              ? c
+              : GLYPHS[(Math.random() * GLYPHS.length) | 0];
+        }
+        el.textContent = out;
+      };
+
+      interval = setInterval(renderFrame, TICK);
+      renderFrame();
+    };
+
+    // wait until the portrait is actually on screen (e.g. a reload that
+    // restores scroll position would otherwise play it off-screen)
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        observer.disconnect();
+        startDecode();
+      }
+    }, { threshold: 0.25 });
+
+    observer.observe(el);
+
+    return () => {
+      observer.disconnect();
+      if (interval) clearInterval(interval);
+    };
+  }, []);
+
   return (
     <div className="w-full flex justify-center overflow-hidden">
-      <pre aria-hidden="true" className="ascii-portrait font-mono shrink-0 select-none text-neutral-600">
+      <pre ref={ref} aria-hidden="true" className="ascii-portrait font-mono shrink-0 select-none text-neutral-600">
         {ART}
       </pre>
     </div>

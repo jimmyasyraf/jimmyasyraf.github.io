@@ -57,9 +57,7 @@ export default function Home() {
   return (
     <main className="max-w-2xl mx-auto px-6">
       <section className="pt-14 flex flex-col items-center">
-        <div className="anim-materialize">
-          <AsciiPortrait />
-        </div>
+        <AsciiPortrait />
 
         <div className="w-full mt-10">
           <h1 className="anim-rise anim-delay-1 text-2xl sm:text-3xl text-black font-semibold tracking-tight">Hazimi Asyraf</h1>
