@@ -3,7 +3,7 @@ import projects from "@/data/projects.json";
 import contributions from "@/data/contributions.json";
 import experience from "@/data/experience.json";
 import clients from "@/data/clients.json";
-import { AsciiPortrait } from "@/components/ui/ascii-portrait";
+import { Hero } from "@/components/ui/hero";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 
 const SectionHeading = ({ title }) => (
@@ -56,30 +56,7 @@ const ExperienceRow = ({ company, position, tenure, description }) => (
 export default function Home() {
   return (
     <main className="max-w-2xl mx-auto px-6">
-      <section className="pt-14 flex flex-col items-center">
-        <AsciiPortrait />
-
-        <div className="w-full mt-10">
-          <h1 className="anim-rise anim-delay-1 text-2xl sm:text-3xl text-black font-semibold tracking-tight">Hazimi Asyraf</h1>
-          <p className="anim-rise anim-delay-2 mt-3 font-mono text-xs uppercase tracking-widest text-neutral-500">
-            software engineer · robotics enthusiast
-          </p>
-
-          <div className="anim-rise anim-delay-3">
-            <p className="mt-10 text-[15px] leading-relaxed">
-              I&apos;m a full-stack software engineer based in Ottawa, Canada who enjoys
-              putting things together and making things work. My favorite work lies at
-              the intersection of design and development, creating experiences that
-              look great and stay performant.
-            </p>
-            <p className="mt-4 text-[15px] leading-relaxed">
-              In the past, I&apos;ve had the opportunity to develop software across a
-              variety of domains, from financial platforms to geospatial tools. My
-              main tools are Ruby on Rails and React.
-            </p>
-          </div>
-        </div>
-      </section>
+      <Hero />
 
       <section className="mt-24">
         <ScrollReveal>

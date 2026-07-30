@@ -76,11 +76,14 @@ const NOISE_RATIO = 0.3;
 const DURATION = 2200;
 const TICK = 50;
 
-export function AsciiPortrait() {
+export function AsciiPortrait({ onDecoded }) {
   const ref = useRef(null);
 
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      onDecoded?.();
+      return;
+    }
 
     const el = ref.current;
     let interval;
@@ -106,9 +109,15 @@ export function AsciiPortrait() {
       });
 
       const start = performance.now();
+      let announced = false;
 
       const renderFrame = () => {
         const elapsed = performance.now() - start;
+        // let the hero text start rising while the last glyphs settle
+        if (!announced && elapsed >= DURATION * 0.7) {
+          announced = true;
+          onDecoded?.();
+        }
         if (elapsed >= DURATION) {
           el.textContent = ART;
           clearInterval(interval);
