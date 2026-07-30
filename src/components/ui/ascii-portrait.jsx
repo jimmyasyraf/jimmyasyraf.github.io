@@ -69,7 +69,7 @@ const ART = `                                                     .+*#*%*#%#%@%#
 export function AsciiPortrait() {
   return (
     <div className="w-full flex justify-center overflow-hidden">
-      <pre aria-hidden="true" className="ascii-portrait shrink-0 select-none text-neutral-600">
+      <pre aria-hidden="true" className="ascii-portrait font-mono shrink-0 select-none text-neutral-600">
         {ART}
       </pre>
     </div>

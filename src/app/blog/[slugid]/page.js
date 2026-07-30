@@ -14,10 +14,10 @@ export default function BlogPost(props) {
 
   return (
     <main className="max-w-2xl mx-auto px-6 pt-14">
-      <p className="text-xs text-neutral-400">
+      <p className="font-mono text-xs text-neutral-400">
         {format(new Date(post.data.date), "yyyy-MM-dd")} · {post.data.category.toLowerCase()}
       </p>
-      <h1 className="mt-3 text-2xl sm:text-3xl text-black font-medium tracking-tight">{post.data.title}</h1>
+      <h1 className="mt-3 text-2xl sm:text-3xl text-black font-semibold tracking-tight">{post.data.title}</h1>
       <div className="prose prose-sm mt-10">
         <Markdown>
           {post.content}

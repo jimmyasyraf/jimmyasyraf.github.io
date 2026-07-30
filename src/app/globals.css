@@ -34,17 +34,6 @@
   mask-image: linear-gradient(to bottom, black 62%, transparent 100%);
 }
 
-/* --- terminal cursor ------------------------------------------------ */
-.cursor-blink {
-  animation: blink 1.1s step-end infinite;
-}
-
-@keyframes blink {
-  50% {
-    opacity: 0;
-  }
-}
-
 @layer utilities {
   .inherit {
     display: inherit;

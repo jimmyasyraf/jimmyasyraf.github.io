@@ -4,14 +4,11 @@ import contributions from "@/data/contributions.json";
 import experience from "@/data/experience.json";
 import clients from "@/data/clients.json";
 import { AsciiPortrait } from "@/components/ui/ascii-portrait";
-import { Typewriter } from "@/components/ui/typewriter";
 
 const SectionHeading = ({ index, title }) => (
   <div className="flex items-baseline justify-between mb-10">
-    <h2 className="text-sm text-black">
-      <span className="text-neutral-400">##</span> {title}
-    </h2>
-    <span className="text-xs text-neutral-300">[{index}]</span>
+    <h2 className="font-mono text-xs uppercase tracking-widest text-neutral-500">{title}</h2>
+    <span className="font-mono text-xs text-neutral-300">{index}</span>
   </div>
 );
 
@@ -23,13 +20,13 @@ const ProjectRow = ({ title, description, link }) => {
   const inner = (
     <>
       <div className="flex items-baseline justify-between gap-4">
-        <h3 className="relative text-sm text-black">
+        <h3 className="relative text-[15px] font-medium text-black">
           <HoverCaret />
           {title}
           {link && <span aria-hidden="true" className="text-neutral-400 group-hover:text-black transition-colors"> ↗</span>}
         </h3>
         {!link && (
-          <span className="text-xs text-neutral-400 border border-neutral-300 px-2 py-0.5 shrink-0">archived</span>
+          <span className="font-mono text-xs text-neutral-400 border border-neutral-300 px-2 py-0.5 shrink-0">archived</span>
         )}
       </div>
       <p className="mt-2 text-sm text-neutral-500 leading-relaxed">{description}</p>
@@ -47,9 +44,9 @@ const ProjectRow = ({ title, description, link }) => {
 
 const ExperienceRow = ({ company, position, tenure, description }) => (
   <div className="border-t border-neutral-200 py-6 grid grid-cols-1 sm:grid-cols-[9rem_1fr] gap-2 sm:gap-8">
-    <span className="text-xs text-neutral-400 sm:pt-0.5">{tenure}</span>
+    <span className="font-mono text-xs text-neutral-400 sm:pt-1">{tenure}</span>
     <div>
-      <h3 className="text-sm text-black">{company}</h3>
+      <h3 className="text-[15px] font-medium text-black">{company}</h3>
       <p className="mt-1 text-xs text-neutral-400">{position}</p>
       <p className="mt-3 text-sm text-neutral-500 leading-relaxed">{description}</p>
     </div>
@@ -63,26 +60,23 @@ export default function Home() {
         <AsciiPortrait />
 
         <div className="w-full mt-10">
-          <p className="text-xs text-neutral-400">$ whoami</p>
-          <h1 className="mt-3 text-2xl sm:text-3xl text-black font-medium tracking-tight">Hazimi Asyraf</h1>
-          <p className="mt-2 text-sm text-neutral-600 h-5"><Typewriter /></p>
+          <h1 className="text-2xl sm:text-3xl text-black font-semibold tracking-tight">Hazimi Asyraf</h1>
+          <p className="mt-3 font-mono text-xs uppercase tracking-widest text-neutral-500">
+            software engineer · robotics enthusiast
+          </p>
 
-          <p className="mt-10 text-sm leading-relaxed">
+          <p className="mt-10 text-[15px] leading-relaxed">
             I&apos;m a full-stack software engineer based in Ottawa, Canada who enjoys
             putting things together and making things work. My favorite work lies at
             the intersection of design and development, creating experiences that
             look great and stay performant.
           </p>
-          <p className="mt-4 text-sm leading-relaxed">
+          <p className="mt-4 text-[15px] leading-relaxed">
             In the past, I&apos;ve had the opportunity to develop software across a
             variety of domains, from financial platforms to geospatial tools. My
             main tools are Ruby on Rails and React.
           </p>
 
-          <p className="mt-8 text-xs text-neutral-500 flex items-center gap-2">
-            <span aria-hidden="true" className="inline-block h-1.5 w-1.5 rounded-full bg-green-500 animate-pulse" />
-            status: open to interesting work
-          </p>
         </div>
       </section>
 
@@ -145,7 +139,7 @@ export default function Home() {
 
       <section className="mt-24">
         <SectionHeading index="05" title="contact" />
-        <p className="text-xs text-neutral-400 mb-6">$ mail -s &quot;want to work together?&quot;</p>
+        <p className="text-sm text-neutral-500 mb-6">Want to work together? Drop me a line.</p>
         <form action="https://formspree.io/jimmyasyraf@gmail.com" method="POST" className="space-y-4">
           <input
             name="email"
@@ -156,14 +150,14 @@ export default function Home() {
           <textarea
             name="message"
             rows={5}
-            placeholder="your message"
+            placeholder="Your message"
             className="w-full bg-transparent border border-neutral-300 px-4 py-3 text-sm text-black placeholder:text-neutral-400 focus:border-black focus:outline-none resize-y"
           />
           <button
             type="submit"
-            className="border border-neutral-400 px-6 py-3 text-sm text-black hover:bg-black hover:text-white transition-colors"
+            className="border border-neutral-400 px-6 py-3 text-sm font-medium text-black hover:bg-black hover:text-white transition-colors"
           >
-            [ send ]
+            Send
           </button>
           <input type="hidden" name="_next" value="https://hazimiasyraf.com" />
         </form>
