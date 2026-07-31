@@ -166,7 +166,7 @@ export function AsciiPortrait({ onDecoded }) {
   }, []);
 
   return (
-    <div className="w-full flex justify-center overflow-hidden">
+    <div data-nosnippet="" className="w-full flex justify-center overflow-hidden">
       <pre ref={ref} aria-hidden="true" className="ascii-portrait font-mono shrink-0 select-none text-neutral-600">
         {ART}
       </pre>
