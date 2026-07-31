@@ -15,8 +15,20 @@ const mono = JetBrains_Mono({
 })
 
 export const metadata = {
+  metadataBase: new URL("https://hazimiasyraf.com"),
   title: "Hazimi Asyraf",
   description: "Software Engineer, Robotics Enthusiast",
+  openGraph: {
+    title: "Hazimi Asyraf",
+    description: "Software Engineer, Robotics Enthusiast",
+    url: "https://hazimiasyraf.com",
+    siteName: "Hazimi Asyraf",
+    images: [{ url: "/assets/og-image.png", width: 1200, height: 630 }],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
 };
 
 export const viewport = {
@@ -35,6 +47,7 @@ export default function RootLayout({ children }) {
           <span>© 2026 hazimi asyraf</span>
           <div className="flex gap-6">
             <Link href="https://github.com/jimmyasyraf" className="link-underline hover:text-black transition-colors">github</Link>
+            <Link href="https://www.linkedin.com/in/hazimiasyraf" className="link-underline hover:text-black transition-colors">linkedin</Link>
             <Link href="mailto:jimmyasyraf@gmail.com" className="link-underline hover:text-black transition-colors">email</Link>
           </div>
         </footer>
