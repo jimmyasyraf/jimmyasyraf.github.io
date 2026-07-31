@@ -3,30 +3,30 @@
     "company": "Braintree Technologies",
     "position": "Software Engineering Lead",
     "tenure": "2020 - Present",
-    "description": "Oversee the development of Gaia, a data platform tailored towards geospatial data as well as real-time robot operations that’s currently used by several leading palm oil industry players."
+    "description": "Lead the end-to-end development of Gaia, a high-performance data platform for geospatial analytics and real-time robot operations at scale. Built the core engine behind its visual app builder, which lets users create data-driven workflows, dashboards, and custom apps with minimal code."
   },
   {
     "company": "Cybrid",
     "position": "Software Engineer (Contract)",
     "tenure": "Summer 2022",
-    "description": "Designed and implemented third party integrations for custodial crypto wallets, for Cybrid's crypto-as-a-service platform for banks."
+    "description": "Designed and implemented third-party integrations for custodial crypto wallets on Cybrid's crypto-as-a-service platform for banks."
   },
   {
     "company": "Ario",
     "position": "Software Developer",
     "tenure": "2018 - 2020",
-    "description": "Responsible for developing payments backend for Ario’s lending platform. Worked with bank’s EFT and ACH to process daily repayments based on the amortization schedule."
+    "description": "Built and maintained the payments backend for Ario's lending platform — integrating EFT and ACH workflows with Canadian banks, automating payment scheduling, retries, and settlement tracking, and adding Equifax-based KYC verification for regulatory compliance."
   },
   {
-    "company": "uOttawa Richard L’Abbé Makerspace",
+    "company": "uOttawa Richard L'Abbé Makerspace",
     "position": "Software Developer",
     "tenure": "Spring 2018",
-    "description": "Managed and developed new features to Makerspace’s project-sharing website, Makerepo.com. Also created MakerRoom, a room-booking site for spaces in Makerspace."
+    "description": "Maintained and extended Makerepo.com, the Makerspace's project-sharing website, and built MakerRoom, a room-booking site for its spaces."
   },
   {
     "company": "Fave",
     "position": "Software Engineering Intern",
     "tenure": "Summer 2017",
-    "description": "Developed the backend for automating and optimizing the process of merchant onboarding, lead the API integration for digital signatures and developed the front end of an analytics web app for merchants to track sales and earnings."
+    "description": "Automated merchant onboarding, led the API integration for digital signatures, and built the front end of an analytics app for merchants to track sales and earnings."
   }
 ]

@@ -76,22 +76,6 @@ export default function Home() {
 
       <section className="mt-24">
         <ScrollReveal>
-          <SectionHeading title="open source" />
-          <div>
-            {contributions.map((contribution, i) => (
-              <ProjectRow
-                key={i}
-                title={contribution.title}
-                description={contribution.description}
-                link={contribution.link}
-              />
-            ))}
-          </div>
-        </ScrollReveal>
-      </section>
-
-      <section className="mt-24">
-        <ScrollReveal>
           <SectionHeading title="experience" />
           <div>
             {experience.map((ex, i) => (
@@ -117,6 +101,22 @@ export default function Home() {
                 title={client.title}
                 description={client.description}
                 link={client.link}
+              />
+            ))}
+          </div>
+        </ScrollReveal>
+      </section>
+
+      <section className="mt-24">
+        <ScrollReveal>
+          <SectionHeading title="open source" />
+          <div>
+            {contributions.map((contribution, i) => (
+              <ProjectRow
+                key={i}
+                title={contribution.title}
+                description={contribution.description}
+                link={contribution.link}
               />
             ))}
           </div>

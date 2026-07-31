@@ -72,7 +72,7 @@ const ART = `                                                     .+*#*%*#%#%@%#
 
 const GLYPHS = "@%#*+=-:.";
 const LIGHT_GLYPHS = ".:·-+ .·- ";
-const NOISE_RATIO = 0.3;
+const NOISE_RATIO = 0.5;
 const DURATION = 2200;
 const TICK = 50;
 
