@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 
-const ART = `                                                     .+*#*%*#%#%@%##@#:
+const RAW = `                                                     .+*#*%*#%#%@%##@#:
                                                    -***#%%%%%@%%%%%@@#*%%%#.
                                                 -=***%%##%%@@@%%@@##@@@@##%%+*%:
                                             -**#%%####%%@%@@@@%@#%@*%#%#@%#%##***%:
@@ -69,6 +69,13 @@ const ART = `                                                     .+*#*%*#%#%@%#
 %%%@@%%@@@@@@*%@@@@@@@@@%%%@@@@@@@@%%@@@@%%%%@%%%%%%%%%%@@%%%%#%%##%%#%%%#%%%%#%#%%%%##%%%#%%@%%%%@@@%@@@@@@@%%%@@%@@%@@%%%%@%%%
 #%%%@@%@@@@@@#@@@@@@@@@%%%%@@@@@@%%%%%@@@%%%%%@%%%%%%%%%%%%%@%%%*##%@%%@%%%%%%#%@%%#%####%@%@%%@%@@@%@%@%@@@@%@%%@@@@%@@%@%%%%%%
 ##%%@@%%%@@@@%@@@@@@@@@@%%@@@@@@%%@@%%%@@@%%%%@%%%%%%%%%%%%%%%%%@%###%%%%%%%%%%%@%#%%%@@@@@%%%%%%%@@%%%%@@@%%@@@@@@@@@@%@%%@@%%%`;
+
+// restore the three empty rows above the head from the original art, and
+// pad every line to the full grid width, so the static haze surrounds the
+// portrait on all sides instead of only where spaces survived
+const RAW_LINES = ["", "", "", ...RAW.split("\n")];
+const GRID_WIDTH = Math.max(...RAW_LINES.map((l) => l.length));
+const ART = RAW_LINES.map((l) => l.padEnd(GRID_WIDTH, " ")).join("\n");
 
 const GLYPHS = "@%#*+=-:.";
 const LIGHT_GLYPHS = ".:·-+ .·- ";
