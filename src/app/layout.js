@@ -35,20 +35,24 @@ export const viewport = {
   themeColor: "#ffffff",
 };
 
+// runs before paint so a saved dark theme never flashes white; default is light
+const themeInit = `(function(){try{if(localStorage.theme==='dark'){document.documentElement.classList.add('dark')}}catch(e){}})()`;
+
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
-        className={`${sans.variable} ${mono.variable} font-sans antialiased bg-white text-neutral-600 min-h-screen`}
+        className={`${sans.variable} ${mono.variable} font-sans antialiased bg-white dark:bg-[#0a0a0a] text-neutral-600 dark:text-neutral-400 min-h-screen`}
       >
+        <script dangerouslySetInnerHTML={{ __html: themeInit }} />
         <Header />
         {children}
-        <footer className="max-w-2xl mx-auto px-6 mt-24 py-10 border-t border-neutral-200 flex items-center justify-between font-mono text-xs text-neutral-400">
+        <footer className="max-w-2xl mx-auto px-6 mt-24 py-10 border-t border-neutral-200 dark:border-neutral-900 flex items-center justify-between font-mono text-xs text-neutral-400 dark:text-neutral-600">
           <span>© 2026 hazimi asyraf</span>
           <div className="flex gap-6">
-            <Link href="https://github.com/jimmyasyraf" className="link-underline hover:text-black transition-colors">github</Link>
-            <Link href="https://www.linkedin.com/in/hazimiasyraf" className="link-underline hover:text-black transition-colors">linkedin</Link>
-            <Link href="mailto:jimmyasyraf@gmail.com" className="link-underline hover:text-black transition-colors">email</Link>
+            <Link href="https://github.com/jimmyasyraf" className="link-underline hover:text-black dark:hover:text-white transition-colors">github</Link>
+            <Link href="https://www.linkedin.com/in/hazimiasyraf" className="link-underline hover:text-black dark:hover:text-white transition-colors">linkedin</Link>
+            <Link href="mailto:jimmyasyraf@gmail.com" className="link-underline hover:text-black dark:hover:text-white transition-colors">email</Link>
           </div>
         </footer>
       </body>

@@ -11,22 +11,22 @@ const SectionHeading = ({ title }) => (
 );
 
 const HoverCaret = () => (
-  <span aria-hidden="true" className="absolute -left-4 text-neutral-400 opacity-0 group-hover:opacity-100 transition-opacity">&gt;</span>
+  <span aria-hidden="true" className="absolute -left-4 text-neutral-400 dark:text-neutral-600 opacity-0 group-hover:opacity-100 transition-opacity">&gt;</span>
 );
 
 const ProjectRow = ({ title, description, link }) => {
   const inner = (
     <>
       <div className="flex items-baseline justify-between gap-4">
-        <h3 className="relative text-[15px] font-medium text-black">
+        <h3 className="relative text-[15px] font-medium text-black dark:text-white">
           <HoverCaret />
           {title}
           {link && (
-            <span aria-hidden="true" className="inline-block text-neutral-400 group-hover:text-black transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 motion-reduce:transform-none"> ↗</span>
+            <span aria-hidden="true" className="inline-block text-neutral-400 dark:text-neutral-600 group-hover:text-black dark:group-hover:text-white transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 motion-reduce:transform-none"> ↗</span>
           )}
         </h3>
         {!link && (
-          <span className="font-mono text-xs text-neutral-400 border border-neutral-300 px-2 py-0.5 shrink-0">archived</span>
+          <span className="font-mono text-xs text-neutral-400 dark:text-neutral-500 border border-neutral-300 dark:border-neutral-700 px-2 py-0.5 shrink-0">archived</span>
         )}
       </div>
       <p className="mt-2 text-sm text-neutral-500 leading-relaxed">{description}</p>
@@ -34,20 +34,20 @@ const ProjectRow = ({ title, description, link }) => {
   );
 
   return link ? (
-    <Link href={link} className="group block border-t border-neutral-200 py-6">
+    <Link href={link} className="group block border-t border-neutral-200 dark:border-neutral-900 py-6">
       {inner}
     </Link>
   ) : (
-    <div className="group border-t border-neutral-200 py-6">{inner}</div>
+    <div className="group border-t border-neutral-200 dark:border-neutral-900 py-6">{inner}</div>
   );
 };
 
 const ExperienceRow = ({ company, position, tenure, description }) => (
-  <div className="border-t border-neutral-200 py-6 grid grid-cols-1 sm:grid-cols-[9rem_1fr] gap-2 sm:gap-8">
-    <span className="font-mono text-xs text-neutral-400 sm:pt-1">{tenure}</span>
+  <div className="border-t border-neutral-200 dark:border-neutral-900 py-6 grid grid-cols-1 sm:grid-cols-[9rem_1fr] gap-2 sm:gap-8">
+    <span className="font-mono text-xs text-neutral-400 dark:text-neutral-600 sm:pt-1">{tenure}</span>
     <div>
-      <h3 className="text-[15px] font-medium text-black">{company}</h3>
-      <p className="mt-1 text-xs text-neutral-400">{position}</p>
+      <h3 className="text-[15px] font-medium text-black dark:text-white">{company}</h3>
+      <p className="mt-1 text-xs text-neutral-400 dark:text-neutral-500">{position}</p>
       <p className="mt-3 text-sm text-neutral-500 leading-relaxed">{description}</p>
     </div>
   </div>
@@ -132,17 +132,17 @@ export default function Home() {
               name="email"
               type="email"
               placeholder="you@example.com"
-              className="w-full bg-transparent border border-neutral-300 px-4 py-3 text-sm text-black placeholder:text-neutral-400 focus:border-black focus:outline-none transition-colors"
+              className="w-full bg-transparent border border-neutral-300 dark:border-neutral-800 px-4 py-3 text-sm text-black dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-600 focus:border-black dark:focus:border-neutral-400 focus:outline-none transition-colors"
             />
             <textarea
               name="message"
               rows={5}
               placeholder="Your message"
-              className="w-full bg-transparent border border-neutral-300 px-4 py-3 text-sm text-black placeholder:text-neutral-400 focus:border-black focus:outline-none resize-y transition-colors"
+              className="w-full bg-transparent border border-neutral-300 dark:border-neutral-800 px-4 py-3 text-sm text-black dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-600 focus:border-black dark:focus:border-neutral-400 focus:outline-none resize-y transition-colors"
             />
             <button
               type="submit"
-              className="border border-neutral-400 px-6 py-3 text-sm font-medium text-black hover:bg-black hover:text-white transition-colors"
+              className="border border-neutral-400 dark:border-neutral-600 px-6 py-3 text-sm font-medium text-black dark:text-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors"
             >
               Send
             </button>

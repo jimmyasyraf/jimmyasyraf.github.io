@@ -21,7 +21,7 @@ export function Hero() {
       <AsciiPortrait onDecoded={handleDecoded} />
 
       <div className="w-full mt-10">
-        <h1 className={reveal("delay-0") + " text-2xl sm:text-3xl text-black font-semibold tracking-tight"}>
+        <h1 className={reveal("delay-0") + " text-2xl sm:text-3xl text-black dark:text-white font-semibold tracking-tight"}>
           Hazimi Asyraf
         </h1>
         <p className={reveal("delay-150") + " mt-3 font-mono text-xs uppercase tracking-widest text-neutral-500"}>
