@@ -80,8 +80,9 @@ const ART = RAW_LINES.map((l) => l.padEnd(GRID_WIDTH, " ")).join("\n");
 const GLYPHS = "@%#*+=-:.";
 const LIGHT_GLYPHS = ".:·-+ .·- ";
 const NOISE_RATIO = 0.5;
-const DURATION = 2200;
+const DURATION = 2600;
 const TICK = 50;
+const BUILDUP = 0.45; // fraction of DURATION during which characters pop in from blank
 
 export function AsciiPortrait({ onDecoded }) {
   const ref = useRef(null);
@@ -99,20 +100,30 @@ export function AsciiPortrait({ onDecoded }) {
       const chars = ART.split("");
       const rowCount = ART.split("\n").length;
 
-      // each visible glyph settles at its own moment: a loose top-to-bottom
-      // sweep with per-character jitter, like a split-flap board resolving.
-      // a sparse fraction of the empty space churns faint static that
-      // dissolves early, so the portrait emerges from a light haze
+      // three-phase reveal: the grid starts blank, characters pop into
+      // churning static one by one during the build-up, then settle into
+      // the final art in a loose top-to-bottom sweep with per-glyph jitter.
+      // noise in the empty space pops in the same way but dissolves back
+      // to blank, so the portrait condenses out of the static
       let row = 0;
-      const settleAt = chars.map((c) => {
+      const appearAt = [];
+      const settleAt = chars.map((c, i) => {
         if (c === "\n") {
           row++;
+          appearAt[i] = 0;
           return 0;
         }
         if (c === " ") {
-          return Math.random() < NOISE_RATIO ? Math.random() * DURATION * 0.4 : 0;
+          if (Math.random() >= NOISE_RATIO) {
+            appearAt[i] = 0;
+            return 0; // stays blank forever
+          }
+          appearAt[i] = Math.random() * DURATION * BUILDUP;
+          return appearAt[i] + 200 + Math.random() * 600;
         }
-        return (row / rowCount) * DURATION * 0.5 + Math.random() * DURATION * 0.5;
+        appearAt[i] = Math.random() * DURATION * BUILDUP;
+        const sweep = (row / rowCount) * 0.5 + Math.random() * 0.5;
+        return DURATION * (BUILDUP + (1 - BUILDUP) * sweep);
       });
 
       const start = performance.now();
@@ -135,6 +146,8 @@ export function AsciiPortrait({ onDecoded }) {
           const c = chars[i];
           if (c === "\n" || elapsed >= settleAt[i]) {
             out += c;
+          } else if (elapsed < appearAt[i]) {
+            out += " "; // not born yet
           } else if (c === " ") {
             out += LIGHT_GLYPHS[(Math.random() * LIGHT_GLYPHS.length) | 0];
           } else {
