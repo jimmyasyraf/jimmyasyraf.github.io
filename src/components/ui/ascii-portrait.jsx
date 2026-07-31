@@ -88,7 +88,13 @@ export function AsciiPortrait({ onDecoded }) {
   const ref = useRef(null);
 
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    // the reveal is an entrance moment: skip it when motion is reduced, or
+    // when the page loads already scrolled down (browser-restored session) —
+    // scrolling back up should find the portrait finished, not replaying
+    if (
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+      window.scrollY > 100
+    ) {
       onDecoded?.();
       return;
     }
