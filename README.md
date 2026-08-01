@@ -1,37 +1,72 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# hazimiasyraf.com
 
-## Getting Started
+Personal site — [hazimiasyraf.com](https://hazimiasyraf.com). Static, built with
+[Astro](https://astro.build), deployed to GitHub Pages by
+`.github/workflows/deploy.yml` on every push to `master`.
 
-First, run the development server:
+No framework JavaScript ships to the browser. The three interactive pieces (the
+ASCII portrait's decode animation and cursor ripple, the scroll reveals, and the
+theme toggle) are a few hundred bytes of vanilla JS inlined per page.
+
+## Develop
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:4321
+npm run build    # -> dist/
+npm run preview  # serve dist/
+npm run check    # astro check
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Requires Node >= 22.12.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Layout
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+src/
+  pages/            routes: index, blog/index, blog/[id], 404
+  layouts/          BaseLayout: <head>, metadata, fonts, GA, header, footer
+  components/       .astro components; portrait.txt holds the ASCII art
+  content/blog/     the posts (markdown) + content.config.ts schema
+  assets/posts/     post images, optimized at build time by astro:assets
+  data/             projects / experience / clients / contributions JSON
+  styles/global.css Tailwind entry, custom CSS, reveal states
+public/             copied verbatim: CNAME, favicon, og-image, animated webp
+```
 
-## Learn More
+## Adding a post
 
-To learn more about Next.js, take a look at the following resources:
+Drop a markdown file in `src/content/blog/`. The filename becomes the URL slug.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```markdown
+---
+title: 'Post Title'
+date: '2026-05-10'
+category: Tech
+thumbnail: "../../assets/posts/image.jpg"
+---
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+`date` must be a **quoted** `YYYY-MM-DD` string — it is rendered as-is, with no
+date parsing, so the output does not depend on the build machine's timezone. An
+unquoted date is parsed as a YAML timestamp and fails the schema at build time.
 
-## Deploy on Vercel
+Reference images relatively so Astro can optimize them:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```markdown
+![Alt text](../../assets/posts/image.jpg)
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Absolute `/assets/...` paths are served untouched from `public/` — that is
+deliberate for `ownsticker.webp`, whose animation sharp would strip.
 
+## Notes
+
+- Tailwind 4. The theme lives in `tailwind.config.mjs`, loaded via `@config`
+  from `global.css`; dark mode is the `@custom-variant dark` rule there.
+- `markdown.smartypants` and `markdown.syntaxHighlight` are off in
+  `astro.config.mjs` to preserve the previous rendering. Turning either on is a
+  deliberate visual change.
+- Image sources are capped at 1248px wide — twice the 624px prose column. Astro
+  derives the `sizes` attribute from the source width, so a larger source would
+  make browsers fetch more than they can display.
