@@ -1,0 +1,38 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+// Dates are ISO strings, so lexicographic descending is chronological
+// descending -- no Date parsing, and therefore no timezone dependency.
+// (Three-way compare so equal dates are a stable no-op rather than
+// depending on directory read order, which the old comparator did.)
+const posts = (await getCollection('blog')).sort((a, b) =>
+  a.data.date < b.data.date ? 1 : a.data.date > b.data.date ? -1 : 0,
+);
+---
+
+<BaseLayout>
+  <main class="max-w-2xl mx-auto px-6 pt-14">
+    <h1 class="anim-rise mb-12 text-2xl text-black dark:text-white font-semibold tracking-tight">Blog</h1>
+
+    <div class="anim-rise anim-delay-1">
+      {posts.map((post) => (
+        <a
+          href={`/blog/${post.id}`}
+          class="group flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-6 border-t border-neutral-200 dark:border-neutral-900 py-5"
+        >
+          <span class="font-mono text-xs text-neutral-400 dark:text-neutral-600 tabular-nums shrink-0 sm:w-24">
+            {post.data.date}
+          </span>
+          <span class="relative flex-1 text-[15px] font-medium text-neutral-700 dark:text-neutral-300 group-hover:text-black dark:group-hover:text-white transition-colors">
+            <span aria-hidden="true" class="absolute -left-4 text-neutral-400 dark:text-neutral-600 opacity-0 group-hover:opacity-100 transition-opacity">&gt;</span>
+            {post.data.title}
+          </span>
+          <span class="font-mono text-xs text-neutral-300 dark:text-neutral-700 shrink-0">
+            {post.data.category.toLowerCase()}
+          </span>
+        </a>
+      ))}
+    </div>
+  </main>
+</BaseLayout>

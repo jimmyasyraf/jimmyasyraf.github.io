@@ -1,0 +1,29 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  link?: string;
+}
+
+const { title, description, link } = Astro.props;
+const Tag = link ? 'a' : 'div';
+const classes = link
+  ? 'group block border-t border-neutral-200 dark:border-neutral-900 py-6'
+  : 'group border-t border-neutral-200 dark:border-neutral-900 py-6';
+---
+
+<Tag class={classes} {...link ? { href: link } : {}}>
+  <div class="flex items-baseline justify-between gap-4">
+    <h3 class="relative text-[15px] font-medium text-black dark:text-white">
+      <span aria-hidden="true" class="absolute -left-4 text-neutral-400 dark:text-neutral-600 opacity-0 group-hover:opacity-100 transition-opacity">&gt;</span>
+      {title}
+      {link && (
+        <span aria-hidden="true" class="inline-block text-neutral-400 dark:text-neutral-600 group-hover:text-black dark:group-hover:text-white transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 motion-reduce:transform-none"> ↗</span>
+      )}
+    </h3>
+    {!link && (
+      <span class="font-mono text-xs text-neutral-400 dark:text-neutral-500 border border-neutral-300 dark:border-neutral-700 px-2 py-0.5 shrink-0">archived</span>
+    )}
+  </div>
+  <p class="mt-2 text-sm text-neutral-500 leading-relaxed">{description}</p>
+</Tag>

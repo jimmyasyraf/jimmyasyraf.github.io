@@ -1,0 +1,113 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import ProjectRow from '../components/ProjectRow.astro';
+import ExperienceRow from '../components/ExperienceRow.astro';
+import projects from '../data/projects.json';
+import contributions from '../data/contributions.json';
+import experience from '../data/experience.json';
+import clients from '../data/clients.json';
+
+// Was the ScrollReveal component's wrapper div; the opacity/transform states
+// are in global.css now and the class is added by one shared observer below.
+const reveal = 'inherit transition-all duration-700 ease-out motion-reduce:transition-none';
+---
+
+<BaseLayout>
+  <main class="max-w-2xl mx-auto px-6">
+    <Hero />
+
+    <section class="mt-24">
+      <div data-reveal class={reveal}>
+        <h2 class="font-mono text-xs uppercase tracking-widest text-neutral-500 mb-10">projects</h2>
+        <div>
+          {projects.map((p) => <ProjectRow title={p.title} description={p.description} link={p.link} />)}
+        </div>
+      </div>
+    </section>
+
+    <section class="mt-24">
+      <div data-reveal class={reveal}>
+        <h2 class="font-mono text-xs uppercase tracking-widest text-neutral-500 mb-10">experience</h2>
+        <div>
+          {experience.map((ex) => (
+            <ExperienceRow
+              company={ex.company}
+              position={ex.position}
+              tenure={ex.tenure}
+              description={ex.description}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="mt-24">
+      <div data-reveal class={reveal}>
+        <h2 class="font-mono text-xs uppercase tracking-widest text-neutral-500 mb-10">clients</h2>
+        <div>
+          {clients.map((c) => <ProjectRow title={c.title} description={c.description} link={c.link} />)}
+        </div>
+      </div>
+    </section>
+
+    <section class="mt-24">
+      <div data-reveal class={reveal}>
+        <h2 class="font-mono text-xs uppercase tracking-widest text-neutral-500 mb-10">open source</h2>
+        <div>
+          {contributions.map((c) => <ProjectRow title={c.title} description={c.description} link={c.link} />)}
+        </div>
+      </div>
+    </section>
+
+    <section class="mt-24">
+      <div data-reveal class={reveal}>
+        <h2 class="font-mono text-xs uppercase tracking-widest text-neutral-500 mb-10">contact</h2>
+        <p class="text-sm text-neutral-500 mb-6">Want to work together? Drop me a line.</p>
+        <form action="https://formspree.io/jimmyasyraf@gmail.com" method="POST" class="space-y-4">
+          {/* First, not last: Tailwind 4's space-y-* puts margin-block-end on
+              `> :not(:last-child)`, where v3 put margin-top on
+              `> :not([hidden]) ~ :not([hidden])`. With this display:none input
+              last, the Send button would pick up a trailing 16px margin that
+              used to land on the invisible element. */}
+          <input type="hidden" name="_next" value="https://hazimiasyraf.com" />
+          <input
+            name="email"
+            type="email"
+            placeholder="you@example.com"
+            class="w-full bg-transparent border border-neutral-300 dark:border-neutral-800 px-4 py-3 text-sm text-black dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-600 focus:border-black dark:focus:border-neutral-400 focus:outline-none transition-colors"
+          />
+          <textarea
+            name="message"
+            rows={5}
+            placeholder="Your message"
+            class="w-full bg-transparent border border-neutral-300 dark:border-neutral-800 px-4 py-3 text-sm text-black dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-600 focus:border-black dark:focus:border-neutral-400 focus:outline-none resize-y transition-colors"
+          ></textarea>
+          <button
+            type="submit"
+            class="border border-neutral-400 dark:border-neutral-600 px-6 py-3 text-sm font-medium text-black dark:text-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors"
+          >
+            Send
+          </button>
+        </form>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<script>
+  // One observer for all five sections. The React version mounted a separate
+  // ScrollReveal component (and a separate IntersectionObserver) per section.
+  const io = new IntersectionObserver(
+    (entries) => {
+      for (const e of entries) {
+        if (e.isIntersecting) {
+          e.target.classList.add('is-in');
+          io.unobserve(e.target);
+        }
+      }
+    },
+    { rootMargin: '0px 0px -10% 0px' },
+  );
+  document.querySelectorAll('[data-reveal]').forEach((el) => io.observe(el));
+</script>

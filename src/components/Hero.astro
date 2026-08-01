@@ -1,0 +1,51 @@
+---
+import AsciiPortrait from './AsciiPortrait.astro';
+
+// `decoded` was React state here, flipped by AsciiPortrait's onDecoded prop.
+// It is now a class on the section, added when the portrait dispatches
+// `portrait:decoded`; the opacity/transform states live in global.css. The
+// per-element delay-* / duration-700 classes stay on the elements, so the
+// stagger timing is unchanged.
+const reveal = 'hero-reveal transition-all duration-700 ease-out motion-reduce:transition-none';
+---
+
+<section data-hero class="pt-14 flex flex-col items-center">
+  <AsciiPortrait />
+
+  <div class="w-full mt-10">
+    <h1 class={`${reveal} delay-0 text-2xl sm:text-3xl text-black dark:text-white font-semibold tracking-tight`}>
+      Hazimi Asyraf
+    </h1>
+    <p class={`${reveal} delay-150 mt-3 font-mono text-xs uppercase tracking-widest text-neutral-500`}>
+      software engineer · robotics enthusiast
+    </p>
+
+    <div class={`${reveal} delay-300`}>
+      <p class="mt-10 text-[15px] leading-relaxed">
+        I&apos;m a full-stack software engineer based in Ottawa, Canada who enjoys
+        putting things together and making things work. Much of my work
+        lies at the intersection of design and development, creating
+        experiences that look great and stay performant.
+      </p>
+      <p class="mt-4 text-[15px] leading-relaxed">
+        In the past, I&apos;ve had the opportunity to develop software across a
+        variety of domains, from financial platforms to geospatial tools. My
+        main tools are Ruby on Rails and React.
+      </p>
+      <p class="mt-4 text-[15px] leading-relaxed">
+        I&apos;m passionate about robots. My free time goes into building
+        them: the electronics, the mechanics, and the software that ties it
+        all together. I have a soft spot for problems with hardware in the
+        loop.
+      </p>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener(
+    'portrait:decoded',
+    () => document.querySelector('[data-hero]')?.classList.add('is-decoded'),
+    { once: true },
+  );
+</script>

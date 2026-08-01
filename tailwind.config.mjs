@@ -1,26 +1,21 @@
 /** @type {import('tailwindcss').Config} */
+// Loaded by src/styles/global.css via `@config`. Tailwind 4 auto-detects source
+// files, so there is no `content` array; plugins are registered with `@plugin`
+// in the CSS. Everything under theme.extend is carried over unchanged from the
+// Next.js setup -- the typography block in particular, since prose styling is
+// where a regression would be hardest to spot.
 export default {
-    darkMode: ["class"],
-    content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
   theme: {
-  	extend: {
-  		fontFamily: {
-  			sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
-  			mono: ['var(--font-mono)', 'ui-monospace', 'monospace']
-  		},
-  		colors: {
-  			background: 'var(--background)',
-  			foreground: 'var(--foreground)'
-  		},
-  		borderRadius: {
-  			lg: 'var(--radius)',
-  			md: 'calc(var(--radius) - 2px)',
-  			sm: 'calc(var(--radius) - 4px)'
-  		},
+    extend: {
+      fontFamily: {
+        sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
+        mono: ['var(--font-mono)', 'ui-monospace', 'monospace'],
+      },
+      borderRadius: {
+        lg: 'var(--radius)',
+        md: 'calc(var(--radius) - 2px)',
+        sm: 'calc(var(--radius) - 4px)',
+      },
       typography: ({ theme }) => ({
         DEFAULT: {
           css: {
@@ -66,11 +61,10 @@ export default {
             },
             p: {
               lineHeight: theme('lineHeight.7'),
-            }
-          }
-        }
-      })
-  	}
+            },
+          },
+        },
+      }),
+    },
   },
-  plugins: [require('@tailwindcss/typography')],
 };

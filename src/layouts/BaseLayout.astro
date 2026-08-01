@@ -1,0 +1,85 @@
+---
+import { Font } from 'astro:assets';
+import Header from '../components/Header.astro';
+import '../styles/global.css';
+
+const title = 'Hazimi Asyraf';
+const description = 'Software Engineer, Robotics Enthusiast';
+const siteUrl = 'https://hazimiasyraf.com';
+const ogImage = `${siteUrl}/assets/og-image.png`;
+const GA_ID = 'G-V8R4LZ2TC4';
+---
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={siteUrl} />
+    <meta property="og:site_name" content={title} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:type" content="website" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:width" content="1200" />
+    <meta name="twitter:image:height" content="630" />
+
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="48x48 32x32 16x16" />
+
+    <Font cssVariable="--font-sans" preload />
+    <Font cssVariable="--font-mono" preload />
+
+    {/* Must stay is:inline: bundled scripts are deferred, and this has to run
+        before first paint or a saved dark theme flashes white. Also drops the
+        no-js class, which otherwise reveals the hero/section content up front. */}
+    <script is:inline>
+      document.documentElement.classList.remove('no-js');
+      (function () {
+        try {
+          if (localStorage.theme === 'dark') {
+            document.documentElement.classList.add('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
+
+    <script is:inline async src=`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`></script>
+    <script is:inline define:vars={{ GA_ID }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', GA_ID);
+    </script>
+  </head>
+
+  <body
+    class="font-sans antialiased bg-white dark:bg-[#0a0a0a] text-neutral-600 dark:text-neutral-400 min-h-screen"
+  >
+    <Header />
+    <slot />
+    <footer
+      class="max-w-2xl mx-auto px-6 mt-24 py-10 border-t border-neutral-200 dark:border-neutral-900 flex items-center justify-between font-mono text-xs text-neutral-400 dark:text-neutral-600"
+    >
+      <span>© 2026 hazimi asyraf</span>
+      <div class="flex gap-6">
+        <a href="https://github.com/jimmyasyraf" class="link-underline hover:text-black dark:hover:text-white transition-colors">github</a>
+        <a href="https://www.linkedin.com/in/hazimiasyraf" class="link-underline hover:text-black dark:hover:text-white transition-colors">linkedin</a>
+        <a href="mailto:jimmyasyraf@gmail.com" class="link-underline hover:text-black dark:hover:text-white transition-colors">email</a>
+      </div>
+    </footer>
+  </body>
+</html>

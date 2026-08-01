@@ -1,0 +1,204 @@
+---
+import RAW from './portrait.txt?raw';
+
+// Restore the three empty rows above the head and pad every line to the full
+// grid width, so the static haze surrounds the portrait on all sides instead
+// of only where spaces survived.
+//
+// The padding is load-bearing beyond the noise field: it means the first
+// character in the <pre> is a space rather than a newline. HTML drops exactly
+// one newline immediately after <pre>, so emitting a bare "\n\n\n" here would
+// silently render one line fewer than the React version did and shift the
+// whole page up by one line-height (8.925px).
+const RAW_LINES = ['', '', '', ...RAW.split('\n')];
+const GRID_WIDTH = Math.max(...RAW_LINES.map((l) => l.length));
+const ART = RAW_LINES.map((l) => l.padEnd(GRID_WIDTH, ' ')).join('\n');
+---
+
+<div data-nosnippet="" class="w-full flex justify-center overflow-hidden">
+  <!-- prettier-ignore -->
+  <pre id="ascii-portrait" aria-hidden="true" class="ascii-portrait font-mono shrink-0 select-none text-neutral-600 dark:text-neutral-500">{ART}</pre>
+</div>
+
+<script>
+  // Ported from the React component's useEffect. That code was already pure
+  // imperative DOM work behind a ref, so this is the same logic with the
+  // framework removed: the ref becomes getElementById, and the onDecoded
+  // callback that fed Hero's useState becomes a CustomEvent.
+  const el = document.getElementById('ascii-portrait');
+
+  if (el) {
+    // Rebuild the padded grid from the DOM rather than shipping the art twice.
+    // Deriving GRID_WIDTH and the padding from the same read guarantees the
+    // index arithmetic below agrees with the string it indexes into.
+    const lines = (el.textContent ?? '').split('\n');
+    const GRID_WIDTH = Math.max(...lines.map((l) => l.length));
+    const ART = lines.map((l) => l.padEnd(GRID_WIDTH, ' ')).join('\n');
+    const rowCount = lines.length;
+    el.textContent = ART;
+
+    const GLYPHS = '@%#*+=-:.';
+    const LIGHT_GLYPHS = '.:·-+ .·- ';
+    const NOISE_RATIO = 0.5;
+    const DURATION = 2600;
+    const TICK = 50;
+    const BUILDUP = 0.45; // fraction of DURATION spent popping in from blank
+    const HOVER_RADIUS = 4; // ripple radius, in character-cell widths
+
+    const chars = ART.split('');
+    const scrambleUntil = new Float64Array(chars.length);
+
+    let ready = false; // hover ripple waits until the portrait is decoded
+    let interval: ReturnType<typeof setInterval> | undefined;
+    let hoverInterval: ReturnType<typeof setInterval> | null = null;
+
+    // Hero listens for this to fade its text in. Deferred a tick because the
+    // two component scripts are separate modules with no guaranteed order --
+    // dispatching synchronously could fire before Hero's listener attaches and
+    // leave the hero text stuck invisible.
+    const announce = () => {
+      queueMicrotask(() => document.dispatchEvent(new CustomEvent('portrait:decoded')));
+    };
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      announce();
+    } else {
+      // The reveal is an entrance moment: when the page loads already scrolled
+      // down (browser-restored session), skip it -- scrolling back up should
+      // find the portrait finished, not replaying.
+      const entranceSkipped = window.scrollY > 100;
+      if (entranceSkipped) {
+        ready = true;
+        announce();
+      }
+
+      // --- hover ripple: glyphs near the cursor churn, then settle back ----
+      const renderScramble = () => {
+        const now = performance.now();
+        let active = false;
+        let out = '';
+        for (let i = 0; i < chars.length; i++) {
+          const c = chars[i]!;
+          if (c !== '\n' && c !== ' ' && now < scrambleUntil[i]!) {
+            active = true;
+            out += GLYPHS[(Math.random() * GLYPHS.length) | 0];
+          } else {
+            out += c;
+          }
+        }
+        el.textContent = out;
+        if (!active && hoverInterval) {
+          clearInterval(hoverInterval);
+          hoverInterval = null;
+        }
+      };
+
+      el.addEventListener('mousemove', (e) => {
+        if (!ready) return;
+        const rect = el.getBoundingClientRect();
+        const cellW = rect.width / GRID_WIDTH;
+        const cellH = rect.height / rowCount;
+        const radius = cellW * HOVER_RADIUS;
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const now = performance.now();
+
+        const minRow = Math.max(0, Math.floor((y - radius) / cellH));
+        const maxRow = Math.min(rowCount - 1, Math.ceil((y + radius) / cellH));
+        const minCol = Math.max(0, Math.floor((x - radius) / cellW));
+        const maxCol = Math.min(GRID_WIDTH - 1, Math.ceil((x + radius) / cellW));
+
+        for (let r = minRow; r <= maxRow; r++) {
+          for (let col = minCol; col <= maxCol; col++) {
+            const dx = (col + 0.5) * cellW - x;
+            const dy = (r + 0.5) * cellH - y;
+            if (dx * dx + dy * dy > radius * radius) continue;
+            const idx = r * (GRID_WIDTH + 1) + col; // +1 for the newline
+            const c = chars[idx];
+            if (c !== ' ' && c !== '\n' && c !== undefined) {
+              scrambleUntil[idx] = now + 250 + Math.random() * 350;
+            }
+          }
+        }
+        if (!hoverInterval) hoverInterval = setInterval(renderScramble, TICK);
+      });
+
+      // three-phase reveal: the grid starts blank, characters pop into
+      // churning static one by one during the build-up, then settle into the
+      // final art in a loose top-to-bottom sweep with per-glyph jitter. Noise
+      // in the empty space pops in the same way but dissolves back to blank,
+      // so the portrait condenses out of the static.
+      const startDecode = () => {
+        let row = 0;
+        const appearAt: number[] = [];
+        const settleAt = chars.map((c, i) => {
+          if (c === '\n') {
+            row++;
+            appearAt[i] = 0;
+            return 0;
+          }
+          if (c === ' ') {
+            if (Math.random() >= NOISE_RATIO) {
+              appearAt[i] = 0;
+              return 0; // stays blank forever
+            }
+            appearAt[i] = Math.random() * DURATION * BUILDUP;
+            return appearAt[i]! + 200 + Math.random() * 600;
+          }
+          appearAt[i] = Math.random() * DURATION * BUILDUP;
+          const sweep = (row / rowCount) * 0.5 + Math.random() * 0.5;
+          return DURATION * (BUILDUP + (1 - BUILDUP) * sweep);
+        });
+
+        const start = performance.now();
+        let announced = false;
+
+        const renderFrame = () => {
+          const elapsed = performance.now() - start;
+          // let the hero text start rising while the last glyphs settle
+          if (!announced && elapsed >= DURATION * 0.7) {
+            announced = true;
+            announce();
+          }
+          if (elapsed >= DURATION) {
+            el.textContent = ART;
+            if (interval) clearInterval(interval);
+            ready = true; // decode finished; hover ripple may take over
+            return;
+          }
+          let out = '';
+          for (let i = 0; i < chars.length; i++) {
+            const c = chars[i]!;
+            if (c === '\n' || elapsed >= settleAt[i]!) {
+              out += c;
+            } else if (elapsed < appearAt[i]!) {
+              out += ' '; // not born yet
+            } else if (c === ' ') {
+              out += LIGHT_GLYPHS[(Math.random() * LIGHT_GLYPHS.length) | 0];
+            } else {
+              out += GLYPHS[(Math.random() * GLYPHS.length) | 0];
+            }
+          }
+          el.textContent = out;
+        };
+
+        interval = setInterval(renderFrame, TICK);
+        renderFrame();
+      };
+
+      // wait until the portrait is actually on screen before decoding
+      if (!entranceSkipped) {
+        const observer = new IntersectionObserver(
+          ([entry]) => {
+            if (entry?.isIntersecting) {
+              observer.disconnect();
+              startDecode();
+            }
+          },
+          { threshold: 0.25 },
+        );
+        observer.observe(el);
+      }
+    }
+  }
+</script>
