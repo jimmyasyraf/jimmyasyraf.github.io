@@ -17,4 +17,4 @@ Since this thing would be event-driven, this would be a great use case for me to
 
 First of all, when a customer places an order on my store, it will trigger a webhook where a callback URL can be assigned, in this case, my Google Cloud Function endpoint. The webhook event provides all the necessary order data in JSON. Each request contains a HMAC-SHA256 header that is signature generated from the contents of the request body which will then needs to be verified from Google Cloud Function's end. My function will then proceed to do its magic of generating the print file and then do a POST request with my API key to my supplier for placing an order for printing the stickers. And that's it, my Shopify store is now automated and running passively while I sleep.
 
-![OwnSticker](/assets/ownsticker.gif)
+![OwnSticker](/assets/ownsticker.webp)

@@ -2,33 +2,21 @@
   {
     "title": "GitReward",
     "description": "Bounty system for GitHub issues based on smart contracts on Ethereum L2.",
-    "logo": "/assets/gitreward-logo.png",
-    "logoBorder": false,
-    "photo": "/assets/gitreward-screenshot.png",
     "link": "https://gitreward.com"
   },
   {
     "title": "Rails Marketplace Template",
     "description": "A Ruby on Rails starter kit for your marketplace idea.",
-    "logo": "/assets/rails-marketplace-template-logo.png",
-    "logoBorder": false,
-    "photo": "/assets/rails-marketplace-template-screenshot.png",
     "link": "https://railsmarketplacetemplate.com"
   },
   {
     "title": "RankReel",
     "description": "Convert CSVs into animated ranking videos.",
-    "logo": "/assets/rankreel-logo.png",
-    "logoBorder": true,
-    "photo": "/assets/rankreel-photo.png",
     "link": "https://rankreel.app"
   },
   {
     "title": "Lettergories",
     "description": "Players compete in finding words beginning with a letter that fits a few categories.",
-    "logo": "/assets/lettergories-logo.png",
-    "logoBorder": false,
-    "photo": "/assets/lettergories.png",
     "link": "https://lettergories.com"
   }
 ]
