@@ -11,6 +11,17 @@
     --radius: 0rem;
   }
 
+  /* Tailwind 3's Preflight shipped `button, [role="button"] { cursor: pointer }`;
+     Tailwind 4 dropped it to match the browser default of `cursor: default`.
+     Restores the pointer on the theme toggle and the contact form's Send
+     button. (The :not(:disabled) guard is Tailwind's own recommended form; no
+     button on this site is ever disabled, so it behaves identically to the v3
+     rule here.) */
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
   html {
     color-scheme: light;
     scrollbar-color: #d4d4d4 #ffffff;
