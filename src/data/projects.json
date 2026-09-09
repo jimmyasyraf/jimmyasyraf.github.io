@@ -1,5 +1,10 @@
 [
   {
+    "title": "Siram",
+    "description": "Automatic Houseplant Irrigation.",
+    "link": "https://siram.co"
+  },
+  {
     "title": "GitReward",
     "description": "Bounty system for GitHub issues based on smart contracts on Ethereum L2.",
     "link": "https://gitreward.com"
