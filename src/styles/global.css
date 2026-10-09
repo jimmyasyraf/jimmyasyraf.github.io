@@ -123,6 +123,35 @@
   }
 }
 
+/* Accessible skip link */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Skip link becomes visible when focused via keyboard */
+.sr-only:focus {
+  position: absolute;
+  width: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+.visible-focus-outline:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
 @layer utilities {
   .inherit {
     display: inherit;

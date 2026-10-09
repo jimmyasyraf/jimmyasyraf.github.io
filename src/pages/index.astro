@@ -14,21 +14,21 @@ const reveal = 'inherit transition-all duration-700 ease-out motion-reduce:trans
 ---
 
 <BaseLayout>
-  <main class="max-w-2xl mx-auto px-6">
+  <main id="main-content" class="max-w-2xl mx-auto px-6">
     <Hero />
 
-    <section class="mt-24">
+    <section class="mt-24" aria-labelledby="heading-projects">
       <div data-reveal class={reveal}>
-        <h2 class="font-mono text-xs uppercase tracking-widest text-neutral-500 mb-10">projects</h2>
+        <h2 id="heading-projects" class="font-mono text-xs uppercase tracking-widest text-neutral-500 mb-10">projects</h2>
         <div>
           {projects.map((p) => <ProjectRow title={p.title} description={p.description} link={p.link} />)}
         </div>
       </div>
     </section>
 
-    <section class="mt-24">
+    <section class="mt-24" aria-labelledby="heading-experience">
       <div data-reveal class={reveal}>
-        <h2 class="font-mono text-xs uppercase tracking-widest text-neutral-500 mb-10">experience</h2>
+        <h2 id="heading-experience" class="font-mono text-xs uppercase tracking-widest text-neutral-500 mb-10">experience</h2>
         <div>
           {experience.map((ex) => (
             <ExperienceRow
@@ -42,50 +42,60 @@ const reveal = 'inherit transition-all duration-700 ease-out motion-reduce:trans
       </div>
     </section>
 
-    <section class="mt-24">
+    <section class="mt-24" aria-labelledby="heading-clients">
       <div data-reveal class={reveal}>
-        <h2 class="font-mono text-xs uppercase tracking-widest text-neutral-500 mb-10">clients</h2>
+        <h2 id="heading-clients" class="font-mono text-xs uppercase tracking-widest text-neutral-500 mb-10">clients</h2>
         <div>
           {clients.map((c) => <ProjectRow title={c.title} description={c.description} link={c.link} />)}
         </div>
       </div>
     </section>
 
-    <section class="mt-24">
+    <section class="mt-24" aria-labelledby="heading-opensource">
       <div data-reveal class={reveal}>
-        <h2 class="font-mono text-xs uppercase tracking-widest text-neutral-500 mb-10">open source</h2>
+        <h2 id="heading-opensource" class="font-mono text-xs uppercase tracking-widest text-neutral-500 mb-10">open source</h2>
         <div>
           {contributions.map((c) => <ProjectRow title={c.title} description={c.description} link={c.link} />)}
         </div>
       </div>
     </section>
 
-    <section class="mt-24">
+    <section class="mt-24" aria-labelledby="heading-contact">
       <div data-reveal class={reveal}>
-        <h2 class="font-mono text-xs uppercase tracking-widest text-neutral-500 mb-10">contact</h2>
+        <h2 id="heading-contact" class="font-mono text-xs uppercase tracking-widest text-neutral-500 mb-10">contact</h2>
         <p class="text-sm text-neutral-500 mb-6">Want to work together? Drop me a line.</p>
-        <form action="https://formspree.io/jimmyasyraf@gmail.com" method="POST" class="space-y-4">
+        <form action="https://formspree.io/jimmyasyraf@gmail.com" method="POST" class="space-y-4" aria-labelledby="heading-contact">
           {/* First, not last: Tailwind 4's space-y-* puts margin-block-end on
               `> :not(:last-child)`, where v3 put margin-top on
               `> :not([hidden]) ~ :not([hidden])`. With this display:none input
               last, the Send button would pick up a trailing 16px margin that
               used to land on the invisible element. */}
           <input type="hidden" name="_next" value="https://hazimiasyraf.com" />
+          <label for="contact-email" class="sr-only">Email address</label>
           <input
+            id="contact-email"
             name="email"
             type="email"
+            required
+            autocomplete="email"
+            aria-label="Your email address"
             placeholder="you@example.com"
-            class="w-full bg-transparent border border-neutral-300 dark:border-neutral-800 px-4 py-3 text-sm text-black dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-600 focus:border-black dark:focus:border-neutral-400 focus:outline-hidden transition-colors"
+            class="w-full bg-transparent border border-neutral-300 dark:border-neutral-800 px-4 py-3 text-sm text-black dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-600 focus:border-black dark:focus:border-neutral-400 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-black dark:focus-visible:ring-white transition-colors"
           />
+          <label for="contact-message" class="sr-only">Message</label>
           <textarea
+            id="contact-message"
             name="message"
             rows={5}
+            required
+            aria-label="Your message"
             placeholder="Your message"
-            class="w-full bg-transparent border border-neutral-300 dark:border-neutral-800 px-4 py-3 text-sm text-black dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-600 focus:border-black dark:focus:border-neutral-400 focus:outline-hidden resize-y transition-colors"
+            class="w-full bg-transparent border border-neutral-300 dark:border-neutral-800 px-4 py-3 text-sm text-black dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-600 focus:border-black dark:focus:border-neutral-400 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-black dark:focus-visible:ring-white resize-y transition-colors"
           ></textarea>
           <button
             type="submit"
-            class="border border-neutral-400 dark:border-neutral-600 px-6 py-3 text-sm font-medium text-black dark:text-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors"
+            aria-label="Send message"
+            class="border border-neutral-400 dark:border-neutral-600 px-6 py-3 text-sm font-medium text-black dark:text-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-black dark:focus-visible:ring-white focus-visible:ring-offset-2 transition-colors"
           >
             Send
           </button>
