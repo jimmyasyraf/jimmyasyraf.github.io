@@ -2,17 +2,17 @@
 import ThemeToggle from './ThemeToggle.astro';
 ---
 
-<nav class="sticky top-0 z-50 border-b border-neutral-200 dark:border-neutral-900 bg-white/80 dark:bg-[#0a0a0a]/80 backdrop-blur">
+<nav class="sticky top-0 z-50 border-b border-neutral-200 dark:border-neutral-900 bg-white/80 dark:bg-[#0a0a0a]/80 backdrop-blur" aria-label="Site navigation">
   <div class="max-w-2xl mx-auto h-14 flex items-center justify-between px-6">
-    <a href="/" class="text-sm font-medium text-black dark:text-white">
+    <a href="/" class="text-sm font-medium text-black dark:text-white focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-black dark:focus-visible:ring-white focus-visible:ring-offset-2">
       Hazimi Asyraf
     </a>
 
     <div class="flex flex-row gap-6 font-mono text-xs">
-      <a href="/" class="link-underline text-neutral-500 hover:text-black dark:hover:text-white transition-colors">
+      <a href="/" class="link-underline text-neutral-500 hover:text-black dark:hover:text-white transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-black dark:focus-visible:ring-white focus-visible:ring-offset-2">
         home
       </a>
-      <a href="/blog" class="link-underline text-neutral-500 hover:text-black dark:hover:text-white transition-colors">
+      <a href="/blog" class="link-underline text-neutral-500 hover:text-black dark:hover:text-white transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-black dark:focus-visible:ring-white focus-visible:ring-offset-2">
         blog
       </a>
       <ThemeToggle />
