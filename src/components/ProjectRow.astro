@@ -7,12 +7,14 @@ interface Props {
 
 const { title, description, link } = Astro.props;
 const Tag = link ? 'a' : 'div';
+const baseClasses = 'border-t border-neutral-200 dark:border-neutral-900 py-6';
 const classes = link
-  ? 'group block border-t border-neutral-200 dark:border-neutral-900 py-6'
-  : 'group border-t border-neutral-200 dark:border-neutral-900 py-6';
+  ? `group block ${baseClasses} focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-black dark:focus-visible:ring-white focus-visible:ring-offset-2`
+  : `group ${baseClasses}`;
+const externalAttrs = link ? { href: link, rel: 'noopener noreferrer', target: '_blank' } : {};
 ---
 
-<Tag class={classes} {...link ? { href: link } : {}}>
+<Tag class={classes} {...externalAttrs}>
   <div class="flex items-baseline justify-between gap-4">
     <h3 class="relative text-[15px] font-medium text-black dark:text-white">
       <span aria-hidden="true" class="absolute -left-4 text-neutral-400 dark:text-neutral-600 opacity-0 group-hover:opacity-100 transition-opacity">&gt;</span>
