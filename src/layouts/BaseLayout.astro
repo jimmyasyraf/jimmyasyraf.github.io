@@ -3,11 +3,25 @@ import { Font } from 'astro:assets';
 import Header from '../components/Header.astro';
 import '../styles/global.css';
 
-const title = 'Hazimi Asyraf';
-const description = 'Software Engineer, Robotics Enthusiast';
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const {
+  title: propsTitle,
+  description: propsDescription,
+  ogImage: propsOgImage,
+} = Astro.props as Props;
+
+const title = propsTitle ?? 'Hazimi Asyraf';
+const description = propsDescription ?? 'Software Engineer, Robotics Enthusiast';
 const siteUrl = 'https://hazimiasyraf.com';
-const ogImage = `${siteUrl}/assets/og-image.png`;
+const defaultOgImage = `${siteUrl}/assets/og-image.png`;
+const ogImage = propsOgImage ?? defaultOgImage;
 const GA_ID = 'G-V8R4LZ2TC4';
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
 ---
 
 <!doctype html>
@@ -19,11 +33,12 @@ const GA_ID = 'G-V8R4LZ2TC4';
 
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
 
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={siteUrl} />
-    <meta property="og:site_name" content={title} />
+    <meta property="og:site_name" content="Hazimi Asyraf" />
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -69,6 +84,11 @@ const GA_ID = 'G-V8R4LZ2TC4';
   <body
     class="font-sans antialiased bg-white dark:bg-[#0a0a0a] text-neutral-600 dark:text-neutral-400 min-h-screen"
   >
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[100] focus:px-3 focus:py-2 focus:bg-black focus:text-white focus:text-sm"
+      >Skip to content</a
+    >
     <Header />
     <slot />
     <footer
