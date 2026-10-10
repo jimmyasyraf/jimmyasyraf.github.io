@@ -12,8 +12,9 @@ const { post } = Astro.props;
 const { Content } = await render(post);
 ---
 
-<BaseLayout>
-  <main class="max-w-2xl mx-auto px-6 pt-14">
+<BaseLayout title={`${post.data.title} — Hazimi Asyraf`} description={`${post.data.title} · ${post.data.category}`}>
+  <main id="main-content" class="max-w-2xl mx-auto px-6 pt-14">
+    <a href="/blog" class="anim-rise inline-block font-mono text-xs text-neutral-500 hover:text-black dark:hover:text-white transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-black dark:focus-visible:ring-white focus-visible:ring-offset-2 mb-4">← Back to blog</a>
     <p class="anim-rise font-mono text-xs text-neutral-400 dark:text-neutral-600">
       {post.data.date} · {post.data.category.toLowerCase()}
     </p>
